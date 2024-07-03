@@ -1,5 +1,35 @@
+:root {
+  --background-primary-color: #0e0d0d;
+  --background-secondary-color: #292828;
+  --text-color: #fff;
+  --primary-color: #6200EE;
+  --secondary-color: #03DAC6;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  color: var(--text-color);
 }
+
+body {
+  font-family: "Titillium Web", sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--background-primary-color);
+}
+
+.container {
+  max-width: 1398px;
+  height: 100%;
+  padding: 0px 15px;
+  margin: 0 auto;
+}
+
+

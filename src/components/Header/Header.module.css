@@ -1,0 +1,16 @@
+.header {
+   height: 50px;
+   background-color: var(--background-secondary-color);
+}
+
+.header__flex-container {
+   height: 100%;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.navbar span {
+   margin-right: 20px;
+}
