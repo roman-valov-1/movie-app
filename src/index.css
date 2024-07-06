@@ -28,8 +28,18 @@ body {
 .container {
   max-width: 1398px;
   height: 100%;
-  padding: 0px 15px;
+  padding: 30px 15px;
   margin: 0 auto;
 }
 
+.h1 {
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .container {
+     padding: 20px 10px;
+  }
+}
 

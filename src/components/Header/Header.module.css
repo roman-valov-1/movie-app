@@ -1,5 +1,5 @@
 .header {
-   height: 50px;
+   height: 4rem;
    background-color: var(--background-secondary-color);
 }
 
@@ -11,6 +11,21 @@
    justify-content: space-between;
 }
 
-.navbar span {
+.header__link {
+   font-size: 1.3rem;
+   font-weight: 600;
+   text-decoration: none;
+   color: var(--primary-color);
+   cursor: pointer;
+   text-transform: uppercase;
+   outline: none;
+}
+
+.header__link:is(:first-child) {
    margin-right: 20px;
+}
+
+.header__link:hover,
+.header__link:focus {
+   color: var(--secondary-color);
 }
