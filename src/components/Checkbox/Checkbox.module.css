@@ -1,0 +1,34 @@
+.label,
+.label-checked {
+   position: relative;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   gap: 5px;
+   cursor: pointer;
+   padding: 5px;
+   font-size: 1rem;
+   line-height: 1.2rem;
+}
+
+.checkbox {
+   visibility: hidden;
+}
+
+.label::before,
+.label-checked::before {
+   content: '';
+   position: absolute;
+   left: 5px;
+   top: 0.6rem;
+   width: 0.7rem;
+   height: 0.7rem;
+}
+
+.label::before {
+   background-color: red;
+}
+
+.label-checked::before {
+   background-color: blue;
+}

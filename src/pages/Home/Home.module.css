@@ -2,12 +2,27 @@
    background-color: var(--background-secondary-color);
    padding: 20px;
    border-radius: 20px;
+   display: flex;
+   flex-direction: column;
 }
 
 .home__search-block {
-   width: 300px;
+   min-width: 300px;
+   width: 50%;
+   max-width: 600px;
    display: flex;
+   align-self: center;
    flex-direction: row;
    align-items: center;
    gap: 20px;
+}
+
+.home__movie-list {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   align-items: center;
+   gap: 30px;
+   padding-top: 30px;
 }
