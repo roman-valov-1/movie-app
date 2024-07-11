@@ -1,0 +1,22 @@
+.select {
+   position: relative;
+   background-color: black;
+}
+
+.select__title {
+}
+
+.select__list {
+   position: absolute;
+   display: none;
+}
+.select__list_active {
+   position: absolute;
+   z-index: 10;
+   display: block;
+   background-color: black;
+}
+
+.select__list-item {
+
+}

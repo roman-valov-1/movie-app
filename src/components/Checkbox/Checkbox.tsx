@@ -3,12 +3,11 @@ import styles from './Checkbox.module.css';
 import { ICheckboxProps } from './Checkbox.props';
 import cn from 'classnames';
 
-function Checkbox({ value, name, ...props }: ICheckboxProps) {
+function Checkbox({ value, name,  ...props }: ICheckboxProps) {
    const [checked, setChecked] = useState(false);
 
    const handler = ():void => {
       setChecked(!checked)
-      console.log(checked)
    };
 
    return (
