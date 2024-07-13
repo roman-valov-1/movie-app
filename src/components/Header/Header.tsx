@@ -1,9 +1,18 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 import Button from '../Button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import { authActions } from '../../store/auth.slice';
 
 function Header() {
-   let auth = false;
+   
+   const auth = useSelector((s: RootState) => s.auth.isAuth);
+   const dispatch = useDispatch<AppDispatch>();
+
+   const logoutHandler = () => {
+      dispatch(authActions.logout());
+   }
 
    return (
       <header className={styles['header']}>
@@ -24,7 +33,7 @@ function Header() {
                   <NavLink to="/random-movie" className={styles['header__link']}>
                      Random movie
                   </NavLink>
-                  <Button>
+                  <Button onClick={logoutHandler}>
                      Log out
                   </Button>
                </div>}

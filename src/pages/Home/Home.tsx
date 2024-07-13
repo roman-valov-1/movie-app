@@ -4,7 +4,7 @@ import TextInput from '../../components/TextInput/TextInput';
 import styles from './Home.module.css';
 import Button from '../../components/Button/Button';
 import Checkbox from '../../components/Checkbox/Checkbox';
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useEffect } from 'react';
 import SelectBlock from '../../components/SelectInput/SelectBlock';
 
 const data = ['criminal', 'horror', 'detective', 'comedy'];
@@ -12,7 +12,18 @@ const data2 = ['anime', 'melodrama', 'triller']
 
 function Home() {
 
-
+   // useEffect(() => {
+   //    const getToken = async () => {
+   //       const res = await fetch('https://api.kinopoisk.dev/v1.4/movie/random', {
+   //          method: 'GET',
+   //          headers: {
+   //             'X-API-KEY': '35EFQCP-CBD4ADR-NYZCEJ4-395PRG6',
+   //          }
+   //       });
+   //       console.log(res.json());
+   //    }
+   //    getToken()
+   // }, [])
    function submitHandler(e: SyntheticEvent) {
       e.preventDefault();
    }
