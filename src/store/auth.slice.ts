@@ -5,7 +5,7 @@ export interface IAuthState {
    login: string;
    password: string;
 }
-
+                               
 const initialState: IAuthState = {
    isAuth: false,
    login: 'test@mail.test',

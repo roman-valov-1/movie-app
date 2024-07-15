@@ -17,6 +17,12 @@
    height: 320px;
    background-color: var(--secondary-color);
    align-self: center;
+   overflow: hidden;
+}
+
+.movie-card__image img {
+   width: 100%;
+   height: auto;
 }
 
 .movie-card__info {
@@ -24,7 +30,8 @@
 }
 
 .movie-card__info-item {
-   padding-bottom: 10px;;
+   padding-bottom: 10px;
+   ;
 }
 
 .movie-card__info-title {

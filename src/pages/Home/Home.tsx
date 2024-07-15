@@ -1,59 +1,52 @@
-
+import { useEffect, useState } from 'react';
 import MovieCard from '../../components/MovieCard/MovieCard';
 import TextInput from '../../components/TextInput/TextInput';
 import styles from './Home.module.css';
-import Button from '../../components/Button/Button';
-import Checkbox from '../../components/Checkbox/Checkbox';
-import { SyntheticEvent, useEffect } from 'react';
-import SelectBlock from '../../components/SelectInput/SelectBlock';
-
-const data = ['criminal', 'horror', 'detective', 'comedy'];
-const data2 = ['anime', 'melodrama', 'triller']
+import { useDebounce } from '../../hooks/useDebounce';
+import { useSearchMovieByNameQuery } from '../../store/movie.api';
 
 function Home() {
 
-   // useEffect(() => {
-   //    const getToken = async () => {
-   //       const res = await fetch('https://api.kinopoisk.dev/v1.4/movie/random', {
-   //          method: 'GET',
-   //          headers: {
-   //             'X-API-KEY': '35EFQCP-CBD4ADR-NYZCEJ4-395PRG6',
-   //          }
-   //       });
-   //       console.log(res.json());
-   //    }
-   //    getToken()
-   // }, [])
-   function submitHandler(e: SyntheticEvent) {
-      e.preventDefault();
-   }
+   const [search, setSearch] = useState('');
+   const debounced = useDebounce(search);
+
+   const { isLoading, isError, data } = useSearchMovieByNameQuery(debounced, {
+      skip: debounced.length < 3
+   });
+
+   useEffect(() => {
+      console.log(data);
+   }, [debounced]);
+
+
 
    return (
       <div className='container'>
          <section className={styles['home']}>
             <h1 className='h1'>Let's find something good</h1>
-            <form className={styles['home__search-block']} onSubmit={submitHandler}>
-               <div className={styles['home__search-header']}>
+            <div className={styles['home__search-block']} >
+               <div className={styles['home__search']}>
                   <TextInput
                      type={'text'}
                      name={'search'}
                      placeholder={"Type a film's name"}
+                     onChange={e => setSearch(e.target.value)}
                   />
-                  <Button type='submit'>Find</Button>
                </div>
-               <div className={styles['home__search-checkboxes']}>
-                  {data.map((item, index) => {
-                     return <Checkbox key={index} value={item} name={'genre'} />
-                  })}
-               </div>
-               <SelectBlock name={'genre'} list={data2} />
-            </form>
+            </div>
             <div className={styles['home__movie-list']}>
-               <MovieCard />
-               <MovieCard />
-               <MovieCard />
-               <MovieCard />
-               <MovieCard />
+               {isLoading && <div>Loading...</div>}
+               {isError && <div>Error...</div>}
+               {data?.map(movie => (
+                  <MovieCard
+                     key={movie.id}
+                     imageUrl={movie.poster.url}
+                     name={movie.name}
+                     genres={movie.genres}
+                     countries={movie.countries}
+                     description={movie.description}
+                  />
+               ))}
             </div>
          </section>
       </div>
