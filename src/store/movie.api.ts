@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IMovie, ServerResponse } from "../types/movieApi.types";
 
+const token = '35EFQCP-CBD4ADR-NYZCEJ4-395PRG6';
+
 
 export const movieApi = createApi({
    reducerPath: 'movieApi',
@@ -10,7 +12,7 @@ export const movieApi = createApi({
          query: (search: string) => ({
             url: `movie/search?`,
             headers: {
-               'X-API-KEY': '35EFQCP-CBD4ADR-NYZCEJ4-395PRG6',
+               'X-API-KEY': token,
             },
             params: {
                page: 1,

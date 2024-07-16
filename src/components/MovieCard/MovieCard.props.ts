@@ -7,6 +7,7 @@ type country = {
 }
 
 export interface IMovieCard {
+   id: number;
    imageUrl?: string;
    name: string;
    genres?: genre[];

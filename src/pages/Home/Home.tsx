@@ -11,7 +11,8 @@ function Home() {
    const debounced = useDebounce(search);
 
    const { isLoading, isError, data } = useSearchMovieByNameQuery(debounced, {
-      skip: debounced.length < 3
+      skip: debounced.length < 3,
+      refetchOnFocus: true
    });
 
    useEffect(() => {
@@ -40,11 +41,12 @@ function Home() {
                {data?.map(movie => (
                   <MovieCard
                      key={movie.id}
+                     id={movie.id}
                      imageUrl={movie.poster.url}
                      name={movie.name}
                      genres={movie.genres}
                      countries={movie.countries}
-                     description={movie.description}
+                     description={movie.shortDescription}
                   />
                ))}
             </div>

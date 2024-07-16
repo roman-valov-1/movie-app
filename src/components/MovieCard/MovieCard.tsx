@@ -1,8 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './MovieCard.module.css';
 import { IMovieCard } from './MovieCard.props';
+import imageNotFound from './../../assets/image-not-found.jpg';
 
 function MovieCard({
+   id,
    imageUrl,
    name,
    genres,
@@ -13,7 +15,7 @@ function MovieCard({
    return (
       <div className={styles['movie-card']}>
          <div className={styles['movie-card__image']}>
-            <img src={imageUrl} alt="movie poster" />
+            <img src={imageUrl ? imageUrl : imageNotFound} alt="movie poster" />
          </div>
          <div className={styles['movie-card__info']}>
             <div className={styles['movie-card__info-item']}>
@@ -22,13 +24,15 @@ function MovieCard({
             </div>
             <div className={styles['movie-card__info-item']}>
                <span className={styles['movie-card__info-title']}>Genre:</span>
-               {genres?.map(g => <span>{g.name}</span>)}
-               {!genres && <span>No data</span>}
+               <span>
+                  {genres ? genres.map(i => i.name).join(', ') : 'No data'}
+               </span>
             </div>
             <div className={styles['movie-card__info-item']}>
                <span className={styles['movie-card__info-title']}>Country:</span>
-               {countries?.map(c => <span>{c.name}</span>)}
-               {!genres && <span>No data</span>}
+               <span>
+                  {countries ? countries.map(i => i.name).join(', ') : 'No data'}
+               </span>
             </div>
             <div className={styles['movie-card__info-item']}>
                <span className={styles['movie-card__info-title']}>Description:</span>
@@ -36,9 +40,9 @@ function MovieCard({
                {!description && <span>No data</span> }
             </div>
          </div>
-         <NavLink to='/login' className={styles['movie-card__info-link']}>
+         <Link to={`/movie-page/${id}`} target='_blank' className={styles['movie-card__info-link']}>
             More details
-         </NavLink>
+         </Link>
       </div>
    )
 }
