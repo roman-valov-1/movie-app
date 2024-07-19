@@ -1,12 +1,12 @@
 export interface ServerResponse {
-   docs: IMovie[]
+   docs: IMovieByName[]
    total: number
    limit: number
    page: number
    pages: number
 }
 
-export interface IMovie {
+export interface IMovieByName {
    internalNames: string[]
    name: string
    alternativeName: string
@@ -96,3 +96,5 @@ export interface Votes {
    russianFilmCritics: number
    await: number
 }
+
+

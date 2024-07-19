@@ -1,0 +1,84 @@
+.movie {
+   background-color: var(--background-secondary-color);
+   padding: 20px;
+   border-radius: 20px;
+   display: flex;
+   flex-direction: column;
+}
+.movie__header {
+   width: 70%;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 30px;
+   align-self: center;
+   padding: 20px 0px 30px 0px;
+}
+
+.movie__poster {
+   width: 75%;
+   height: auto;
+   object-fit: cover;
+   align-self: center;
+   justify-self: center;
+}
+.movie__poster img {
+   width: 100%;
+   height: auto;
+}
+
+.movie__info {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+}
+
+.movie__info-item {
+   text-wrap: wrap;
+   max-height: 5rem;
+   overflow: hidden;
+}
+
+.movie__info-item span {
+   display: block;
+   color: var(--primary-color);
+   text-transform: uppercase;
+}
+
+.movie__main{
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+}
+
+.movie__item-title {
+   text-align: center;
+   color: var(--primary-color);
+   font-size: 1.5rem;
+   text-transform: uppercase;
+   padding: 10px 0px;
+}
+
+.movie__actors-list {
+   display: flex;
+   flex-direction: row;
+   gap: 30px;
+   padding: 0px 30px;
+
+}
+.movie__actors-item {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 8rem;
+}
+
+.movie__actors-item img{
+   width: 80%;
+   height: auto;
+}
+
+.movie__actors-item span {
+   display: block;
+   padding-top: 10px;
+}

@@ -15,10 +15,6 @@ function Home() {
       refetchOnFocus: true
    });
 
-   useEffect(() => {
-      console.log(data);
-   }, [debounced]);
-
 
 
    return (
