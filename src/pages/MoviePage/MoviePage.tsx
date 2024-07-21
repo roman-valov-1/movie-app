@@ -14,10 +14,10 @@ function MoviePage() {
       <div className='container'>
          {isLoading && <div>Loading</div>}
          {data && <section className={styles['movie']}>
-            
+
             <div className={styles['movie__item-title']}>
-                     Main Info
-                  </div>
+               Main Info
+            </div>
             <div className={styles['movie__header']}>
                <div className={styles['movie__poster']}>
                   <img src={data?.poster.url} alt="" />
@@ -72,7 +72,7 @@ function MoviePage() {
                         <span>{data?.persons[4].name}</span>
                      </li>
                   </ul>
-                  
+
                </div>
                <div className={styles['movie__description']}>
                   <div className={styles['movie__item-title']}>

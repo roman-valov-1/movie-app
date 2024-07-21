@@ -15,7 +15,7 @@ function SelectBlock({ name, list }: ISelectBlockProps) {
             {list.map((item, index) => {
                return (
                   <div className={styles['select__list-item']} key={index}>
-                     <Checkbox name={'name'} value={item} />
+                     <Checkbox id={item} name={name} value={item} />
                   </div>
                )
             })}
