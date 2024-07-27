@@ -14,6 +14,9 @@ function Home() {
       page: 1,
       limit: 10
    });
+
+   console.log(search)
+
    const debounced = useDebounce(search.search);
 
    const { isLoading, isError, data } = useSearchMovieByNameQuery(search, {
@@ -69,7 +72,7 @@ function Home() {
                <PaginationBlock
                   currentPage={data?.page}
                   maxPage={data?.pages}
-                  quantity={data?.limit}
+                  quantity={search.limit}
                   changePaginationParams={setSearch}
                >
                   {data?.docs.map(movie => (

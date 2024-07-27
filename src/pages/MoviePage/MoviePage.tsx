@@ -37,7 +37,7 @@ function MoviePage() {
                   </div>
                   <div className={styles['movie__info-item']}>
                      <span>Distributor:</span>
-                     {data?.distributors.distributor}
+                     {data?.distributors?.distributor}
                   </div>
                   <div className={styles['movie__info-item']}>
                      <span>Rating:</span>

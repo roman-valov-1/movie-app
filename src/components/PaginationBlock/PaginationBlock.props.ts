@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { ISearchParams } from "../../types/searchByName.types";
 
 
 export interface IPaginationBlockProps {

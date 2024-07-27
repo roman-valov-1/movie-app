@@ -1,4 +1,5 @@
-.button {
+.button,
+.button_transparent {
    height: 2.5rem;
    font-size: 1rem;
    border: 1px solid var(--primary-color);
@@ -11,8 +12,17 @@
    cursor: pointer;
 }
 
+.button.button_transparent {
+   background-color: transparent;
+}
+
 .button:hover,
 .button:focus {
    border-color: var(--secondary-color);
    background-color: var(--secondary-color);
+}
+
+.button_transparent:hover,
+.button_transparent:focus {
+   border-color: var(--secondary-color);
 }
