@@ -16,6 +16,17 @@
    background-color: transparent;
 }
 
+.button.button_active {
+   background-color: transparent;
+   color: var(--secondary-color);
+   text-decoration: underline;
+}
+
+.button.button_disabled {
+   pointer-events: none;
+   background-color: red;
+}
+
 .button:hover,
 .button:focus {
    border-color: var(--secondary-color);

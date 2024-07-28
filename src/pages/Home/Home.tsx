@@ -5,7 +5,9 @@ import styles from './Home.module.css';
 import { useDebounce } from '../../hooks/useDebounce';
 import { useSearchMovieByNameQuery } from '../../store/movie.api';
 import { ISearchParams } from '../../types/ISearchParams.types';
-import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
+import PaginationBlock from '../../components/PaginationContainer/PaginationContainer';
+import MovieList from '../../components/MovieList/MovieList';
+import MovieCardLoader from '../../components/MovieCardLoader/MovieCardLoader';
 
 function Home() {
 
@@ -69,7 +71,7 @@ function Home() {
             <div className={styles['home__movie-list']}>
                {isLoading && <div>Loading...</div>}
                {isError && <div>Error...</div>}
-               <PaginationBlock
+               {data && <PaginationBlock
                   currentPage={data?.page}
                   maxPage={data?.pages}
                   quantity={search.limit}
@@ -87,7 +89,7 @@ function Home() {
                      />
                   ))}
                </PaginationBlock>
-
+               }
             </div>
          </section>
       </div>

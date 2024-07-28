@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 
-export interface IPaginationBlockProps {
+export interface IPaginationContainerProps {
    children: ReactNode;
    currentPage: number;
    maxPage: number;
