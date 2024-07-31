@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useSearchMovieByIdQuery } from "../../store/movie.api";
 import styles from './MoviePage.module.css';
+import Button from "../../components/Button/Button";
+import { useRef, useState } from "react";
 
 
 
@@ -8,7 +10,22 @@ function MoviePage() {
    const { id } = useParams();
 
    const { isLoading, isError, data } = useSearchMovieByIdQuery(id);
-   console.log(data);
+
+   const containerRef = useRef(null);
+
+   const [x, setX] = useState<number>(0);
+
+   const actorsListButtonsHandler = (str: string) => {
+      if (str === 'forward') {
+         setX(prev => prev -= 500);
+         containerRef.current.style = `transform: translateX(${x}px)`;
+      }
+      if (str === 'back') {
+         setX(prev => prev += 500);
+         containerRef.current.style = `transform: translateX(${x}px)`;
+      }
+   }
+
 
    return (
       <div className='container'>
@@ -50,29 +67,23 @@ function MoviePage() {
                   <div className={styles['movie__item-title']}>
                      List of actors
                   </div>
-                  <ul className={styles['movie__actors-list']}>
-                     <li className={styles['movie__actors-item']}>
-                        <img src={data?.persons[0].photo} alt="" />
-                        <span>{data?.persons[0].name}</span>
-                     </li>
-                     <li className={styles['movie__actors-item']}>
-                        <img src={data?.persons[1].photo} alt="" />
-                        <span>{data?.persons[1].name}</span>
-                     </li>
-                     <li className={styles['movie__actors-item']}>
-                        <img src={data?.persons[2].photo} alt="" />
-                        <span>{data?.persons[2].name}</span>
-                     </li>
-                     <li className={styles['movie__actors-item']}>
-                        <img src={data?.persons[3].photo} alt="" />
-                        <span>{data?.persons[3].name}</span>
-                     </li>
-                     <li className={styles['movie__actors-item']}>
-                        <img src={data?.persons[4].photo} alt="" />
-                        <span>{data?.persons[4].name}</span>
-                     </li>
-                  </ul>
-
+                  <div className={styles['movie__actors-container']}> 
+                     <ul className={styles['movie__actors-list']} ref={containerRef}>
+                        {data?.persons.map(person => {
+                           if (person.name) return (
+                              <li className={styles['movie__actors-item']}>
+                                 <img src={person.photo} alt="" />
+                                 <span>{person.name}</span>
+                              </li>
+                           )
+                           return;
+                        })}
+                     </ul>
+                  </div>
+                  <div className={styles['movie__actors-buttons']}>
+                     <Button onClick={() => actorsListButtonsHandler('back')}>back</Button>
+                     <Button onClick={() => actorsListButtonsHandler('forward')}>forward</Button>
+                  </div>
                </div>
                <div className={styles['movie__description']}>
                   <div className={styles['movie__item-title']}>

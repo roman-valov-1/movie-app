@@ -59,18 +59,32 @@
    padding: 10px 0px;
 }
 
+.movie__actors {
+   
+}
+
+.movie__actors-container {
+   position: relative;
+   overflow: hidden;
+   height: 300px;
+   padding: 10px 50px 20px 50px;
+}
+
 .movie__actors-list {
    display: flex;
    flex-direction: row;
    gap: 30px;
-   padding: 0px 30px;
-
+   position: absolute;
+   left: 50;
+   top: 20px;
+   transition: all 0.2s ease;
 }
 .movie__actors-item {
    display: flex;
    flex-direction: column;
    align-items: center;
-   width: 8rem;
+   min-width: 150px;
+   padding: 10px;
 }
 
 .movie__actors-item img{
@@ -81,4 +95,12 @@
 .movie__actors-item span {
    display: block;
    padding-top: 10px;
+   text-align: center;
+}
+
+.movie__actors-buttons {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
 }

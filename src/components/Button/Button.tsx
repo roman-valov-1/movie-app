@@ -9,8 +9,8 @@ function Button({ children, styleType = 'normal', page, maxPage, ...props }: IBu
       <button {...props} className={cn(styles['button'], {
          [styles['button']]: styleType === 'normal',
          [styles['button_transparent']]: styleType === 'transparent',
-         [styles['button_active']]: children == page,
-         [styles['button_disabled']]: page == maxPage || (page == 1 && children == 'Prev')
+         // [styles['button_active']]: children == page,
+         // [styles['button_disabled']]: page == maxPage || (page == 1 && children == 'Prev')
       })}>
          {children}
       </button>

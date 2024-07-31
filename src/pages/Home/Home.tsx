@@ -6,8 +6,6 @@ import { useDebounce } from '../../hooks/useDebounce';
 import { useSearchMovieByNameQuery } from '../../store/movie.api';
 import { ISearchParams } from '../../types/ISearchParams.types';
 import PaginationBlock from '../../components/PaginationContainer/PaginationContainer';
-import MovieList from '../../components/MovieList/MovieList';
-import MovieCardLoader from '../../components/MovieCardLoader/MovieCardLoader';
 
 function Home() {
 

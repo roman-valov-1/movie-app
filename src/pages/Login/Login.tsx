@@ -47,7 +47,7 @@ function Login() {
               name={'password'}
             />
           </div>
-          <Button style={{ width: "100%" }}>
+          <Button style={{ width: "100%" }} styleType="normal">
             Sign in
           </Button>
         </form>

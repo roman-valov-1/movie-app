@@ -21,7 +21,7 @@ function SelectBlock({
 
    return (
       <div className={selectIsActive ? styles['select_active'] : styles['select']}>
-         <div className={selectIsActive ? styles['select__title_active'] : styles['select__title']} onClick={() => setSelectIsActive(s => !s)}>Choose {name}:</div>
+         <div className={selectIsActive ? styles['select__title_active'] : styles['select__title']} onClick={() => setSelectIsActive(s => !s)}>Choose {name}: </div>
          <div className={selectIsActive ? styles['select__list_active'] : styles['select__list']}>
             {isMultiple && list.map((item, index) => {
                return (
