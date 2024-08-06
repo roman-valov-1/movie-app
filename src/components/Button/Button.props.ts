@@ -6,4 +6,5 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    styleType?: string;
    page?: number;
    maxPage?: number;
+   // disabled?: boolean;
 }

@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useSearchMovieByIdQuery } from "../../store/movie.api";
 import styles from './MoviePage.module.css';
 import Button from "../../components/Button/Button";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 
 
@@ -11,19 +11,26 @@ function MoviePage() {
 
    const { isLoading, isError, data } = useSearchMovieByIdQuery(id);
 
-   const containerRef = useRef(null);
+   const actorsContainer = useRef<HTMLElement | null>(null);
+   const actorsList = useRef<HTMLElement | null>(null);
 
-   const [x, setX] = useState<number>(0);
+   let containerX = 0;
+   let xStep = 0;
+   let maxStep = 0;
 
    const actorsListButtonsHandler = (str: string) => {
+      xStep = actorsContainer.current.offsetWidth;
+      maxStep = Math.ceil(actorsList.current.offsetWidth / actorsContainer.current.offsetWidth);
+
       if (str === 'forward') {
-         setX(prev => prev -= 500);
-         containerRef.current.style = `transform: translateX(${x}px)`;
+         containerX -= xStep;
+         actorsList.current.style = `transform: translateX(${containerX}px)`;
       }
       if (str === 'back') {
-         setX(prev => prev += 500);
-         containerRef.current.style = `transform: translateX(${x}px)`;
+         containerX += xStep;
+         actorsList.current.style = `transform: translateX(${containerX}px)`;
       }
+
    }
 
 
@@ -67,8 +74,8 @@ function MoviePage() {
                   <div className={styles['movie__item-title']}>
                      List of actors
                   </div>
-                  <div className={styles['movie__actors-container']}> 
-                     <ul className={styles['movie__actors-list']} ref={containerRef}>
+                  <div className={styles['movie__actors-container']} ref={actorsContainer}>
+                     <ul className={styles['movie__actors-list']} ref={actorsList}>
                         {data?.persons.map(person => {
                            if (person.name) return (
                               <li className={styles['movie__actors-item']}>

@@ -22,7 +22,7 @@
    text-decoration: underline;
 }
 
-.button.button_disabled {
+.button:disabled {
    pointer-events: none;
    background-color: red;
 }

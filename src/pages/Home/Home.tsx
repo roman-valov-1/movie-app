@@ -15,8 +15,6 @@ function Home() {
       limit: 10
    });
 
-   console.log(search)
-
    const debounced = useDebounce(search.search);
 
    const { isLoading, isError, data } = useSearchMovieByNameQuery(search, {

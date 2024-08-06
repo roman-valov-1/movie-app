@@ -1,6 +1,5 @@
 import { IPaginationContainerProps } from './PaginationContainer.props.ts';
 import styles from './PaginationContainer.module.css';
-import { MouseEvent} from 'react';
 import { ISearchParams } from '../../types/ISearchParams.types.ts';
 import SelectBlock from '../SelectBlock/SelectBlock.tsx';
 import PaginationButtonsBlock from '../PaginationButtonsBlock/PaginationButtonsBlock.tsx';
@@ -18,22 +17,21 @@ function PaginationBlock({
    const quantityFilterList: number[] = [10, 20, 50];
 
 
-   const changePage = (e: MouseEvent): void => {
-      const target = e.target as HTMLElement
+   const changePage = (value: string): void => {
 
-      if (target.textContent == 'Next') {
+      if (value == 'Next') {
          changePaginationParams((prevState: ISearchParams) => ({ ...prevState, page: +prevState.page + 1 }))
          useScrollIntoView();
          return;
       }
 
-      if (target.textContent == 'Prev') {
+      if (value == 'Prev') {
          changePaginationParams((prevState: ISearchParams) => ({ ...prevState, page: +prevState.page - 1 }))
          useScrollIntoView();
          return;
       }
 
-      changePaginationParams((prevState: ISearchParams) => ({ ...prevState, page: target.textContent }));
+      changePaginationParams((prevState: ISearchParams) => ({ ...prevState, page: value }));
 
       useScrollIntoView();
    }
