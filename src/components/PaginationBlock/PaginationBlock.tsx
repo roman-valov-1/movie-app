@@ -1,9 +1,9 @@
-import { IPaginationContainerProps } from './PaginationContainer.props.ts';
-import styles from './PaginationContainer.module.css';
+import { IPaginationContainerProps } from './PaginationBlock.props.ts';
+import styles from './PaginationBlock.module.css';
 import { ISearchParams } from '../../types/ISearchParams.types.ts';
-import SelectBlock from '../SelectBlock/SelectBlock.tsx';
 import PaginationButtonsBlock from '../PaginationButtonsBlock/PaginationButtonsBlock.tsx';
 import { useScrollIntoView } from '../../hooks/useScrollIntoView.ts';
+import PaginationSelect from '../PaginationSelect/PaginationSelect.tsx';
 
 
 function PaginationBlock({
@@ -38,7 +38,7 @@ function PaginationBlock({
 
    return (
       <div className={styles['pagination']}>
-         <SelectBlock
+         <PaginationSelect
             isMultiple={false}
             startRadioValue={quantity}
             changeQuantityParams={changePaginationParams}

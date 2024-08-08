@@ -1,0 +1,35 @@
+.random {
+   display: flex;
+   flex-direction: row;
+   gap: 30px;
+}
+
+.random__aside {
+   flex: 1 0 300px;
+   background-color: var(--background-secondary-color);
+   padding: 20px;
+   border-radius: 20px;
+}
+
+.random__form {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+.random__form-item {
+
+}
+.random__form-item span{
+   display: inline-block;
+   font-weight: 600;
+   margin-bottom: 5px;
+}
+
+.random__content {
+   flex: 1 1 100%;
+   background-color: var(--background-secondary-color);
+   padding: 20px;
+   border-radius: 20px;
+}

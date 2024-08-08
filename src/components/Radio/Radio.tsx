@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import { IRadioProps } from './Radio.props';
 import styles from './Radio.module.css';
 import cn from 'classnames';
@@ -7,11 +7,12 @@ function Radio({
    groupValue, 
    value, 
    name, 
-   changeGroupValue, 
+   changeGroupValue,
    ...props }: IRadioProps) {
 
    const handler = (e: ChangeEvent<HTMLInputElement>):void => {
       changeGroupValue(e.target.value);
+      console.log(value, groupValue)
    };
 
    return (

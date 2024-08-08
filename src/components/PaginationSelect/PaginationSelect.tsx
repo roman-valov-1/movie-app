@@ -1,23 +1,28 @@
-import { useState } from 'react';
-import styles from './SelectBlock.module.css';
-import { ISelectBlockProps } from './SelectBlock.props';
+import { useEffect, useState } from 'react';
+import styles from '../SelectBlock/SelectBlock.module.css';
+import { IPaginationSelectProps } from './PaginationSelect.props';
 import Radio from '../Radio/Radio';
 
 
-function SelectBlock({
+function PaginationSelect({
    startRadioValue,
+   changeQuantityParams,
    name,
-   list }: ISelectBlockProps) {
+   list }: IPaginationSelectProps) {
 
    const [selectIsActive, setSelectIsActive] = useState<boolean>(false);
    const [radioGroupValue, setRadioGroupValue] = useState<number>(startRadioValue);
+
+   useEffect(() => {
+      changeQuantityParams(prevState => ({ ...prevState, limit: radioGroupValue }));
+   }, [radioGroupValue])
 
    return (
       <div className={selectIsActive ? styles['select_active'] : styles['select']}>
          <div className={selectIsActive 
             ? styles['select__title_active'] 
-            : styles['select__title']} onClick={() => setSelectIsActive(s => !s)}>Выбрано: {radioGroupValue} </div>
-         <div className={selectIsActive ? styles['select__list_active'] : styles['select__list']}>
+            : styles['select__title']} onClick={() => setSelectIsActive(s => !s)}>Отображать по {radioGroupValue} элементов </div>
+         <div className={selectIsActive ? styles['select__list_active'] : styles['select__list']}>      
             {list.map((item, index) => {
                return (
                   <div className={styles['select__list-item']} key={index}>
@@ -38,4 +43,4 @@ function SelectBlock({
    );
 };
 
-export default SelectBlock;
+export default PaginationSelect;

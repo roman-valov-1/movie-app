@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from '../../store/store';
 import { authActions } from '../../store/auth.slice';
 
 function Header() {
-   
+
    const auth = useSelector((s: RootState) => s.auth.isAuth);
    const dispatch = useDispatch<AppDispatch>();
 
@@ -21,22 +21,20 @@ function Header() {
                <NavLink to="/" className={styles['header__link']}>
                   MOVIE APP
                </NavLink>
-               {!auth && <nav className={styles['navbar']}>
+               <nav className={styles['navbar']}>
                   <NavLink to="/login" className={styles['header__link']}>
                      Log in
                   </NavLink>
                   <NavLink to="/registration" className={styles['header__link']}>
                      Sign in
                   </NavLink>
-               </nav>}
-               {auth && <div>
                   <NavLink to="/random-movie" className={styles['header__link']}>
                      Random movie
                   </NavLink>
                   <Button onClick={logoutHandler}>
                      Log out
                   </Button>
-               </div>}
+               </nav>
             </div>
          </div>
       </header>
