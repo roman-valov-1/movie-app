@@ -1,0 +1,1 @@
+export const token = '35EFQCP-CBD4ADR-NYZCEJ4-395PRG6';

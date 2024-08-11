@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface IAuthState {
+export interface IauthState {
    isAuth: boolean;
    login: string;
    password: string;
 }
                                
-const initialState: IAuthState = {
+const initialState: IauthState = {
    isAuth: false,
    login: 'test@mail.test',
    password: '12345'

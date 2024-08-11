@@ -12,7 +12,6 @@ function Radio({
 
    const handler = (e: ChangeEvent<HTMLInputElement>):void => {
       changeGroupValue(e.target.value);
-      console.log(value, groupValue)
    };
 
    return (

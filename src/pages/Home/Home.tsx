@@ -3,7 +3,7 @@ import MovieCard from '../../components/MovieCard/MovieCard';
 import TextInput from '../../components/TextInput/TextInput';
 import styles from './Home.module.css';
 import { useDebounce } from '../../hooks/useDebounce';
-import { useSearchMovieByNameQuery } from '../../store/movie.api';
+import { useSearchMovieByNameQuery } from '../../store/Movie.Api';
 import { ISearchParams } from '../../types/ISearchParams.types';
 import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
 import MovieList from '../../components/MovieList/MovieList';

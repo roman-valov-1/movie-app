@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IMovieByName, ServerResponse } from "../types/searchByName.types";
+import { IMovieByName } from "../types/searchByName.types";
 import { IMovieById } from "../types/searchById.types";
 import { ISearchParams } from "../types/ISearchParams.types";
+import { token } from "./api";
 
-const token = '35EFQCP-CBD4ADR-NYZCEJ4-395PRG6';
+
 
 
 export const movieApi = createApi({
