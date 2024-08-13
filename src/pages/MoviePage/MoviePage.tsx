@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useSearchMovieByIdQuery } from "../../store/Movie.Api";
+import { useSearchMovieByIdQuery } from "../../store/reducers/Movie.Api";
 import styles from './MoviePage.module.css';
 import Button from "../../components/Button/Button";
 import { useRef } from "react";

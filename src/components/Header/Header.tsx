@@ -3,7 +3,7 @@ import styles from './Header.module.css';
 import Button from '../Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
-import { authActions } from '../../store/auth.Slice';
+import { authActions } from '../../store/reducers/auth.Slice';
 
 function Header() {
 

@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchFiltersParams } from "./ActionCreators";
+import { fetchFiltersParams } from "../action-creators/fetchFiltersParams";
 
 interface IfiltersState {
    genres: string[];
    countries: string[];
-   years: string[];
+   year: string[];
    isLoading: boolean;
    error: string;
 }
@@ -15,9 +15,9 @@ interface IFiltersData {
 }
 
 const initialState: IfiltersState = {
-   genres: [],
-   countries: [],
-   years: [
+   genres: JSON.parse(localStorage.getItem('filtersData'))?.genres,
+   countries: JSON.parse(localStorage.getItem('filtersData'))?.countries,
+   year: [
       '2021-2024',
       '2011-2020',
       '2001-2010',
@@ -44,6 +44,10 @@ export const filtersParamsSlice = createSlice({
             state.error = '';
             state.genres = action.payload.genres;
             state.countries = action.payload.countries;
+            localStorage.setItem('filtersData', JSON.stringify({
+               genres: action.payload.genres,
+               countries: action.payload.countries
+            }))
          })
          .addCase(fetchFiltersParams.rejected, (state, action: PayloadAction<string>) => {
             state.isLoading = false;

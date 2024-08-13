@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IMovieByName } from "../types/searchByName.types";
-import { IMovieById } from "../types/searchById.types";
-import { ISearchParams } from "../types/ISearchParams.types";
-import { token } from "./api";
+import { IMovieByName } from "../../types/searchByName.types";
+import { IMovieById } from "../../types/searchById.types";
+import { ISearchParams } from "../../types/ISearchParams.types";
+import { token } from "../api-constants";
 
 
 

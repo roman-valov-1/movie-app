@@ -5,7 +5,7 @@ import styles from './Login.module.css';
 import { BaseSyntheticEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store/store";
-import { authActions } from "../../store/auth.Slice";
+import { authActions } from "../../store/reducers/auth.Slice";
 
 function Login() {
 

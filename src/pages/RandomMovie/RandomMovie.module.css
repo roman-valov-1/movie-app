@@ -11,21 +11,6 @@
    border-radius: 20px;
 }
 
-.random__form {
-   width: 100%;
-   display: flex;
-   flex-direction: column;
-   gap: 20px;
-}
-
-.random__form-item {
-
-}
-.random__form-item span{
-   display: inline-block;
-   font-weight: 600;
-   margin-bottom: 5px;
-}
 
 .random__content {
    flex: 1 1 100%;
