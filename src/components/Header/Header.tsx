@@ -1,14 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.css';
 import Button from '../Button/Button';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/store';
-import { authActions } from '../../store/reducers/auth.Slice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { authActions } from '../../store/auth/authSlice';
 
 function Header() {
 
-   const auth = useSelector((s: RootState) => s.auth.isAuth);
-   const dispatch = useDispatch<AppDispatch>();
+   const dispatch = useAppDispatch();
+   const { isAuth, user } = useAppSelector(s => s.auth);
 
    const logoutHandler = () => {
       dispatch(authActions.logout());
@@ -22,18 +22,17 @@ function Header() {
                   MOVIE APP
                </NavLink>
                <nav className={styles['navbar']}>
-                  <NavLink to="/login" className={styles['header__link']}>
-                     Log in
-                  </NavLink>
-                  <NavLink to="/registration" className={styles['header__link']}>
-                     Sign in
-                  </NavLink>
+                  
                   <NavLink to="/random-movie" className={styles['header__link']}>
                      Random movie
                   </NavLink>
-                  <Button onClick={logoutHandler}>
+                  {user && <span>{user.name}</span>}
+                  {isAuth && <Button onClick={logoutHandler}>
                      Log out
-                  </Button>
+                  </Button>}
+                  {!isAuth && <NavLink to="/login" className={styles['header__link']}>
+                     Log in
+                  </NavLink>}
                </nav>
             </div>
          </div>

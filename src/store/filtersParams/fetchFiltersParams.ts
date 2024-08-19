@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import {  createAsyncThunk } from "@reduxjs/toolkit";
 import { token } from "../api-constants";
 
 export const fetchFiltersParams = createAsyncThunk(

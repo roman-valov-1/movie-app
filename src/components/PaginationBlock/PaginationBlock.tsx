@@ -1,6 +1,6 @@
 import { IPaginationContainerProps } from './PaginationBlock.props.ts';
 import styles from './PaginationBlock.module.css';
-import { ISearchParams } from '../../types/ISearchParams.types.ts';
+import { ISearchParams } from '../../store/MovieApi/ISearchParams.types.ts';
 import PaginationButtonsBlock from '../PaginationButtonsBlock/PaginationButtonsBlock.tsx';
 import { useScrollIntoView } from '../../hooks/useScrollIntoView.ts';
 import PaginationSelect from '../PaginationSelect/PaginationSelect.tsx';

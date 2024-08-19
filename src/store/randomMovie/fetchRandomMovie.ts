@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { token } from "../api-constants";
+import { baseURL, token } from "../api-constants";
 
-export const fetchRandomMovie = createAsyncThunk(
+export const fetchRandomMovie= createAsyncThunk(
    'randomMovie',
    async (paramsData, { rejectWithValue }) => {
 
@@ -21,7 +21,7 @@ export const fetchRandomMovie = createAsyncThunk(
       }).toString();
 
       const getRandomMovie = async () => {
-         const response = await fetch(`https://api.kinopoisk.dev/v1.4/movie/random?${params}`, options);
+         const response = await fetch(`${baseURL}/movie/random?${params}`, options);
          const data = response.json();
          return data;
       }

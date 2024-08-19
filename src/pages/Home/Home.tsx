@@ -3,8 +3,8 @@ import MovieCard from '../../components/MovieCard/MovieCard';
 import TextInput from '../../components/TextInput/TextInput';
 import styles from './Home.module.css';
 import { useDebounce } from '../../hooks/useDebounce';
-import { useSearchMovieByNameQuery } from '../../store/reducers/Movie.Api';
-import { ISearchParams } from '../../types/ISearchParams.types';
+import { useSearchMovieByNameQuery } from '../../store/MovieApi/Movie.Api';
+import { ISearchParams } from '../../store/MovieApi/ISearchParams.types';
 import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
 import MovieList from '../../components/MovieList/MovieList';
 

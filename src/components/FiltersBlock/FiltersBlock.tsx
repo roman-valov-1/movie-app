@@ -1,10 +1,11 @@
 import { ChangeEvent, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import SelectBlock from '../SelectBlock/SelectBlock';
 import styles from './FiltersBlock.module.css';
 import { IFiltersBlockProps } from './FiltersBlock.props';
-import { fetchFiltersParams } from '../../store/action-creators/fetchFiltersParams';
+import { fetchFiltersParams } from '../../store/filtersParams/fetchFiltersParams';
 import Button from '../Button/Button';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 
 

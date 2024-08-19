@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authSlice from "./reducers/auth.Slice";
-import filtersParamsSlice  from "./reducers/filtersParams.Slice";
-import { movieApi } from "./reducers/Movie.Api";
-import randomMovieSlice  from "./reducers/randomMovie";
+import authSlice from "./auth/authSlice";
+import filtersParamsSlice  from "./filtersParams/filtersParamsSlice";
+import { movieApi } from "./MovieApi/Movie.Api";
+import randomMovieSlice  from "./randomMovie/randomMovieSlice";
 
 
 export const store = configureStore({

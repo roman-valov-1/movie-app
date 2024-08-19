@@ -1,20 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchFiltersParams } from "../action-creators/fetchFiltersParams";
+import { fetchFiltersParams } from "./fetchFiltersParams";
+import { IFiltersData, IFiltersState } from "./filtersParams.types";
 
-interface IfiltersState {
-   genres: string[];
-   countries: string[];
-   year: string[];
-   isLoading: boolean;
-   error: string;
-}
 
-interface IFiltersData {
-   countries: string[];
-   genres: string[];
-}
 
-const initialState: IfiltersState = {
+const initialState: IFiltersState = {
    genres: JSON.parse(localStorage.getItem('filtersData'))?.genres,
    countries: JSON.parse(localStorage.getItem('filtersData'))?.countries,
    year: [

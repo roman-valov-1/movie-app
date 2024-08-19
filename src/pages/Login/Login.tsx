@@ -2,40 +2,46 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import TextInput from "../../components/TextInput/TextInput";
 import styles from './Login.module.css';
-import { BaseSyntheticEvent } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
-import { authActions } from "../../store/reducers/auth.Slice";
+import { FormEvent, useEffect, useState } from "react";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import { login } from "../../store/auth/login";
 
 function Login() {
 
-  const dispatch = useDispatch<AppDispatch>();
-  const login = useSelector((s: RootState) => s.auth.login);
-  const password = useSelector((s: RootState) => s.auth.password);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const {
+    isLoading,
+    isAuth,
+    error
+  } = useAppSelector(s => s.auth);
 
-  const loginFormHandler = (e: BaseSyntheticEvent) => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const submitHandler = (e: FormEvent) => {
     e.preventDefault();
-    const formData = Object.fromEntries(new FormData(e.target));
-
-    if(formData.login === login && formData.password === password) {
-      dispatch(authActions.login());
-      e.target.reset();
-      navigate('/');
-    } 
+    dispatch(login({email: email, password: password}))
   }
+
+  useEffect(() => {
+    if (isAuth) navigate('/');
+  }, [isAuth])
 
   return (
     <div className="container">
       <section className={styles['login-page']}>
         <h1 className="h1">Sign in to Movie App</h1>
-        <form className={styles['login-form']} onSubmit={loginFormHandler}>
+        <form className={styles['login-form']} onSubmit={submitHandler}>
           <div>
-            <span className={styles['login-form__input-title']}>LOGIN:</span>
+            <span className={styles['login-form__input-title']}>EMAIL:</span>
             <TextInput
-              type={'text'}
-              placeholder={'Enter your login'}
-              name={'login'}
+              type={'email'}
+              placeholder={'Enter your email'}
+              name={'email'}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -45,15 +51,16 @@ function Login() {
               type={'password'}
               placeholder={'Enter your password'}
               name={'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          {isLoading && <div>Loading...</div>}
+          {error && <div>{error}</div>}
           <Button style={{ width: "100%" }} styleType="normal">
             Sign in
           </Button>
         </form>
-        <NavLink to='/registration' className={styles['login-form__link']}>
-          Haven't account? Sign up!
-        </NavLink>
       </section>
     </div>
   )

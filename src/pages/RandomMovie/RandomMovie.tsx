@@ -1,9 +1,10 @@
 import { BaseSyntheticEvent, useState } from "react";
 import styles from './RandomMovie.module.css';
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { fetchRandomMovie } from '../../store/action-creators/fetchRandomMovie';
+import { fetchRandomMovie } from '../../store/randomMovie/fetchRandomMovie';
 import MovieCard from "../../components/MovieCard/MovieCard";
 import FiltersBlock from "../../components/FiltersBlock/FiltersBlock";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
 
 
 
