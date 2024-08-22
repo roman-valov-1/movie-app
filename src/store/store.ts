@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./auth/authSlice";
 import filtersParamsSlice  from "./filtersParams/filtersParamsSlice";
-import { movieApi } from "./MovieApi/Movie.Api";
 import randomMovieSlice  from "./randomMovie/randomMovieSlice";
+import { movieByName } from "./movieByName/movieByName";
+import { movieById } from "./movieById/movieById";
+import moviesByFiltersSlice from "./moviesByFilters/moviesByFiltersSlice";
 
 
 export const store = configureStore({
@@ -10,9 +12,12 @@ export const store = configureStore({
       auth: authSlice, 
       filtersParams: filtersParamsSlice,
       randomMovie: randomMovieSlice,
-      [movieApi.reducerPath]: movieApi.reducer,
+      moviesByFilters: moviesByFiltersSlice,
+      [movieByName.reducerPath]: movieByName.reducer,
+      [movieById.reducerPath]: movieById.reducer
    },
-   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(movieApi.middleware)
+   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
+      movieByName.middleware, movieById.middleware)
 });
 
 export type RootState = ReturnType<typeof store.getState>;

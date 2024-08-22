@@ -22,14 +22,21 @@ function Header() {
                   MOVIE APP
                </NavLink>
                <nav className={styles['navbar']}>
+
                   
-                  <NavLink to="/random-movie" className={styles['header__link']}>
-                     Random movie
-                  </NavLink>
-                  {user && <span>{user.name}</span>}
-                  {isAuth && <Button onClick={logoutHandler}>
-                     Log out
-                  </Button>}
+                  {isAuth && <>
+                     <NavLink to="/search-page" className={styles['header__link']}>
+                        Search
+                     </NavLink>
+                     <NavLink to="/random-movie" className={styles['header__link']}>
+                        Random movie
+                     </NavLink>
+                     <span>{user?.name}</span>
+                     <Button onClick={logoutHandler}>
+                        Log out
+                     </Button>
+                  </>
+                  }
                   {!isAuth && <NavLink to="/login" className={styles['header__link']}>
                      Log in
                   </NavLink>}

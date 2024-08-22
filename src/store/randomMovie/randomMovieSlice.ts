@@ -17,6 +17,7 @@ export const randomMovieSlice = createSlice({
    extraReducers: builder => {
       builder.addCase(fetchRandomMovie.pending, (state) => {
          state.isLoading = true;
+         state.error = '';
       })
       builder.addCase(fetchRandomMovie.fulfilled, (state, action: PayloadAction<IMovieResponse>) => {
          state.isLoading = false;
@@ -24,6 +25,7 @@ export const randomMovieSlice = createSlice({
          state.movie = action.payload;
       })
       builder.addCase(fetchRandomMovie.rejected, (state, action: PayloadAction<string>) => {
+         state.movie = '';
          state.isLoading = false;
          state.error = action.payload;
       })

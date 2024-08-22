@@ -9,6 +9,7 @@ import Login from './pages/Login/Login.tsx';
 import { Provider } from 'react-redux';
 import { store } from './store/store.ts';
 import MoviePage from './pages/MoviePage/MoviePage.tsx';
+import SearchPage from './pages/SearchPage/SearchPage.tsx';
 
 const router = createBrowserRouter([
    {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
          {
             path: '/movie-page/:id',
             element: <MoviePage />
+         },
+         {
+            path: '/search-page',
+            element: <SearchPage />
          },
       ]
    }

@@ -5,16 +5,16 @@ import MovieCard from "../../components/MovieCard/MovieCard";
 import FiltersBlock from "../../components/FiltersBlock/FiltersBlock";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { IFiltersParams } from "../../models/IFiltersParams";
 
 
 
 function RandomMovie() {
-
-   interface ISearchParams {
-      genres: string;
-      countries: string;
-      year: string;
-   }
+   const [searchParams, setSearchParams] = useState<IFiltersParams>({
+      genres: '',
+      countries: '',
+      year: ''
+   });
 
    const dispatch = useAppDispatch();
 
@@ -24,13 +24,6 @@ function RandomMovie() {
       isLoadingMovie,
       error
    } = useAppSelector(state => state.randomMovie);
-
-   const [searchParams, setSearchParams] = useState<ISearchParams>({
-      genres: '',
-      countries: '',
-      year: ''
-   });
-
 
    const onSubmit = (e: BaseSyntheticEvent) => {
       e.preventDefault();
@@ -52,11 +45,10 @@ function RandomMovie() {
                <>
                   {isLoadingMovie && <p>Loading Movie</p>}
                   {error && <p>{error}</p>}
-                  {movie == null && <p>Фильм не найден</p>}
                   {movie && <MovieCard
                      id={movie?.id}
                      imageUrl={movie?.poster?.url}
-                     name={movie?.name}
+                     name={movie?.name ??  movie?.names[0].name}
                      genres={movie?.genres}
                      countries={movie?.countries}
                      description={movie?.shortDescription}

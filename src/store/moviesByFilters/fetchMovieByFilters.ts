@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { baseURL, token } from "../api-constants";
 
-export const fetchRandomMovie = createAsyncThunk(
-   'randomMovie',
-   async (paramsData, { rejectWithValue }) => {
 
+export const fetchMoviesByFilters = createAsyncThunk(
+   'moviesByFilters',
+   async (queryParams, { rejectWithValue }) => {
       const options = {
          method: 'GET',
          headers: {
@@ -12,20 +12,21 @@ export const fetchRandomMovie = createAsyncThunk(
             'X-API-KEY': token
          }
       };
-
+      console.log(queryParams);
       const params = new URLSearchParams({
-         'genres.name': paramsData.genres,
-         'countries.name': paramsData.countries,
-         year: paramsData.year,
+         page: queryParams.page,
+         limit: queryParams.limit,
+         'genres.name': queryParams.genres,
+         'countries.name': queryParams.countries,
+         year: queryParams.year,
          notNullFields: 'id'
       }).toString();
 
       try {
-         const response = await fetch(`${baseURL}/movie/random?${params}`, options);
+         const response = await fetch(`${baseURL}/movie?${params}`, options);
          const data = await response.json();
+         return data;
 
-         if (data) return data;
-         if (data === null) throw new Error('Фильм не найден');
       } catch (e) {
          return rejectWithValue(e.message);
       }

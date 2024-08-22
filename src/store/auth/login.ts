@@ -16,7 +16,6 @@ export const login = createAsyncThunk(
          })
 
          if (user) {
-            console.log(user)
             return user;
          } else {
             throw new Error('Неккоректный email или пароль')
