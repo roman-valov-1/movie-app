@@ -7,8 +7,11 @@ import { ISearchParams } from '../../models/ISearchParams';
 import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
 import MovieList from '../../components/MovieList/MovieList';
 import { useSearchMovieByNameQuery } from '../../store/movieByName/movieByName';
+import { useAuthCheck } from '../../hooks/useAuthCheck';
 
 function SearchPage() {
+
+   useAuthCheck();
 
    const [search, setSearch] = useState<ISearchParams>({
       search: '',

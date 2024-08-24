@@ -6,10 +6,14 @@ import FiltersBlock from "../../components/FiltersBlock/FiltersBlock";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { IFiltersParams } from "../../models/IFiltersParams";
+import { useAuthCheck } from "../../hooks/useAuthCheck";
 
 
 
 function RandomMovie() {
+
+   useAuthCheck();
+
    const [searchParams, setSearchParams] = useState<IFiltersParams>({
       genres: '',
       countries: '',
@@ -25,6 +29,7 @@ function RandomMovie() {
       error
    } = useAppSelector(state => state.randomMovie);
 
+
    const onSubmit = (e: BaseSyntheticEvent) => {
       e.preventDefault();
       dispatch(fetchRandomMovie(searchParams));
@@ -35,9 +40,9 @@ function RandomMovie() {
          <h1 className="h1">Find random movie</h1>
          <div className={styles["random"]}>
             <aside className={styles["random__aside"]}>
-               <FiltersBlock 
-               setSearchParams={setSearchParams}
-               onSubmit={onSubmit}
+               <FiltersBlock
+                  setSearchParams={setSearchParams}
+                  onSubmit={onSubmit}
                />
             </aside>
             <section className={styles["random__content"]}>
@@ -48,7 +53,7 @@ function RandomMovie() {
                   {movie && <MovieCard
                      id={movie?.id}
                      imageUrl={movie?.poster?.url}
-                     name={movie?.name ??  movie?.names[0].name}
+                     name={movie?.name ?? movie?.names[0].name}
                      genres={movie?.genres}
                      countries={movie?.countries}
                      description={movie?.shortDescription}

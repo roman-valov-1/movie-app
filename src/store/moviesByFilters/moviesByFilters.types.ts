@@ -1,8 +1,8 @@
 export interface IMoviesByFiltersState {
    movies: any;
-   page: number;
-   limit: number;
-   pages: number;
+   statePage: number;
+   stateLimit: number;
+   statePages: number | null;
    isLoading: boolean;
    error: string;
 }

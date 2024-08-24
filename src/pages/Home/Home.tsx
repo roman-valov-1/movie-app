@@ -9,10 +9,11 @@ import { fetchMoviesByFilters } from "../../store/moviesByFilters/fetchMovieByFi
 import MovieList from "../../components/MovieList/MovieList";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import PaginationBlock from "../../components/PaginationBlock/PaginationBlock";
+import { moviesByFiltersActions } from "../../store/moviesByFilters/moviesByFiltersSlice";
 
 interface IPaginationParams {
-   pageParameter: number;
-   limitParameter: number;
+   page: number;
+   limit: number;
 }
 
 function Home() {
@@ -24,17 +25,17 @@ function Home() {
    });
 
    const [paginationParams, setPaginationParams] = useState<IPaginationParams>({
-      pageParameter: 1,
-      limitParameter: 10
+      page: 1,
+      limit: 10
    });
 
    const {
       isLoading,
       error,
       movies,
-      page,
-      limit,
-      pages
+      statePage,
+      stateLimit,
+      statePages
    } = useAppSelector(s => s.moviesByFilters);
 
    const dispatch = useAppDispatch();
@@ -43,14 +44,26 @@ function Home() {
       e.preventDefault();
       dispatch(fetchMoviesByFilters({
          page: 1,
-         limit: paginationParams.limitParameter,
+         limit: paginationParams.limit,
          ...searchParams
       }));
    };
 
    useEffect(() => {
-      console.log(22)
+      if (searchParams.genres && searchParams.countries && searchParams.year) {
+         dispatch(fetchMoviesByFilters({
+            ...paginationParams,
+            ...searchParams
+         }));
+      }
    }, [paginationParams])
+
+
+   useEffect(() => {
+      return () => {
+         dispatch(moviesByFiltersActions.clearResults());
+      }
+   }, [])
 
    return (
       <div className="container" >
@@ -69,9 +82,9 @@ function Home() {
 
                <MovieList>
                   {movies && <PaginationBlock
-                     currentPage={page}
-                     maxPage={pages}
-                     quantity={limit}
+                     currentPage={statePage}
+                     maxPage={statePages}
+                     quantity={stateLimit}
                      changePaginationParams={setPaginationParams}
                   >
                      {movies.map(movie => (

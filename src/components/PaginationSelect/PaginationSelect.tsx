@@ -14,7 +14,7 @@ function PaginationSelect({
    const [radioGroupValue, setRadioGroupValue] = useState<number>(startRadioValue);
 
    useEffect(() => {
-      changeQuantityParams(prevState => ({ ...prevState, limit: radioGroupValue }));
+      changeQuantityParams(prevState => ({ ...prevState, limit: radioGroupValue, page: 1 }));
    }, [radioGroupValue])
 
    return (

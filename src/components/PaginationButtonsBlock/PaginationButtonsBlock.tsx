@@ -3,21 +3,21 @@ import { MouseEvent, useState } from 'react';
 import Button from '../Button/Button';
 import { IPaginationButtonsBlock } from './PaginationButtonsBlock.props';
 
-function PaginationButtonsBlock({ 
-   currentPage, 
-   maxPage, 
+function PaginationButtonsBlock({
+   currentPage,
+   maxPage,
    changePage }: IPaginationButtonsBlock) {
 
    const [isPrevBtnDisabled, setIsPrevBtnDisabled] = useState<boolean>(true);
    const [isNextBtnDisabled, setIsNextBtnDisabled] = useState<boolean>(false);
 
 
-   const onChangePageHandler = (e: MouseEvent):void => {
+   const onChangePageHandler = (e: MouseEvent): void => {
       const target = e.target as HTMLElement;
 
       changePage(target.textContent);
 
-      if (target.textContent == "1") {
+      if (Number(target.textContent) <= 1) {
          setIsPrevBtnDisabled(true);
          setIsNextBtnDisabled(false)
       } else if (target.textContent == String(maxPage)) {

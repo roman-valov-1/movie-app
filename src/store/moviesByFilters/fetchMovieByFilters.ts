@@ -22,6 +22,8 @@ export const fetchMoviesByFilters = createAsyncThunk(
          notNullFields: 'id'
       }).toString();
 
+      console.log(params);
+
       try {
          const response = await fetch(`${baseURL}/movie?${params}`, options);
          const data = await response.json();
