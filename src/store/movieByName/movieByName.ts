@@ -1,5 +1,3 @@
-
-
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IMovieByName } from "./movieByName.types";
 import { baseURL, token } from "../api-constants";
@@ -28,5 +26,4 @@ export const movieByName = createApi({
    })
 })
 
-export const { 
-   useSearchMovieByNameQuery } = movieByName;
+export const { useSearchMovieByNameQuery } = movieByName;

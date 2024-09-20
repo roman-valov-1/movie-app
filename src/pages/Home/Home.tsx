@@ -58,12 +58,14 @@ function Home() {
       }
    }, [paginationParams])
 
-
    useEffect(() => {
+
       return () => {
          dispatch(moviesByFiltersActions.clearResults());
       }
+
    }, [])
+
 
    return (
       <div className="container" >
@@ -92,7 +94,7 @@ function Home() {
                            key={movie.id}
                            id={movie.id}
                            imageUrl={movie.poster.url}
-                           name={movie.name ?? movie.names[0].name}
+                           name={movie.name ?? movie.names[0]?.name}
                            genres={movie.genres}
                            countries={movie.countries}
                            description={movie.shortDescription}

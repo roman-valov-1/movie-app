@@ -1,7 +1,7 @@
 import { IPaginationContainerProps } from './PaginationBlock.props.ts';
 import styles from './PaginationBlock.module.css';
 import { ISearchParams } from '../../models/ISearchParams.ts';
-import PaginationButtonsBlock from '../PaginationButtonsBlock/PaginationButtonsBlock.tsx';
+import PaginationButtons from '../PaginationButtons/PaginationButtons.tsx';
 import { useScrollIntoView } from '../../hooks/useScrollIntoView.ts';
 import PaginationSelect from '../PaginationSelect/PaginationSelect.tsx';
 
@@ -49,7 +49,7 @@ function PaginationBlock({
             {children}
          </div>
          {children && <div className={styles['pagination__buttons']}>
-            <PaginationButtonsBlock
+            <PaginationButtons
                currentPage={currentPage}
                maxPage={maxPage}
                changePage={changePage}

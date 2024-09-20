@@ -12,7 +12,7 @@ export const fetchMoviesByFilters = createAsyncThunk(
             'X-API-KEY': token
          }
       };
-      console.log(queryParams);
+      
       const params = new URLSearchParams({
          page: queryParams.page,
          limit: queryParams.limit,
@@ -21,8 +21,6 @@ export const fetchMoviesByFilters = createAsyncThunk(
          year: queryParams.year,
          notNullFields: 'id'
       }).toString();
-
-      console.log(params);
 
       try {
          const response = await fetch(`${baseURL}/movie?${params}`, options);
