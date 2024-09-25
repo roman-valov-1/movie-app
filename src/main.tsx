@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store.ts';
 import MoviePage from './pages/MoviePage/MoviePage.tsx';
 import SearchPage from './pages/SearchPage/SearchPage.tsx';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage.tsx';
 
 const router = createBrowserRouter([
    {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
             path: '/search-page',
             element: <SearchPage />
          },
+         {
+            path: '/*',
+            element: <NotFoundPage />
+         }
       ]
    }
 ])

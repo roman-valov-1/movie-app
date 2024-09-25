@@ -36,7 +36,6 @@ function PaginationBlock({
       useScrollIntoView();
    }
 
-
    return (
       <div className={styles['pagination']}>
          <PaginationSelect

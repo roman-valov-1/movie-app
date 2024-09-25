@@ -1,5 +1,5 @@
 
-import { BaseSyntheticEvent, EventHandler, MouseEvent, useEffect, useState } from "react";
+import { BaseSyntheticEvent, MouseEvent, useEffect, useState } from "react";
 import FiltersBlock from "../../components/FiltersBlock/FiltersBlock";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { IFiltersParams } from "../../models/IFiltersParams";
@@ -7,8 +7,6 @@ import styles from './Home.module.css';
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { fetchMoviesByFilters } from "../../store/moviesByFilters/fetchMovieByFilters";
 import MovieList from "../../components/MovieList/MovieList";
-import MovieCard from "../../components/MovieCard/MovieCard";
-import PaginationBlock from "../../components/PaginationBlock/PaginationBlock";
 import { moviesByFiltersActions } from "../../store/moviesByFilters/moviesByFiltersSlice";
 import { IPaginationParams } from "../../models/IPaginationParams";
 import { fetchMoviesByCollection } from "../../store/moviesByCollection/fetchMoviesByCollection";
@@ -96,7 +94,7 @@ function Home() {
       dispatch(fetchMoviesByCollection({
          page: 1,
          limit: 10,
-         collectionName: 'popular-films',
+         collectionName: collectionsNames[0],
       }))
 
       return () => {
@@ -104,7 +102,6 @@ function Home() {
          dispatch(moviesByCollectionActions.clearState());
       }
    }, [])
-
 
    return (
       <div className="container" >
@@ -131,52 +128,25 @@ function Home() {
                <h2>Results</h2>
                {moviesByFiltersIsLoading && <div>Loading...</div>}
                {moviesByFiltersError && <div>{moviesByFiltersError}</div>}
-               <MovieList>
-                  {moviesByFiltersList && <PaginationBlock
-                     currentPage={moviesByFiltersPage}
-                     maxPage={moviesByFiltersPages}
-                     quantity={moviesByFiltersLimit}
-                     changePaginationParams={setByFiltersPaginationParams}
-                  >
-                     {moviesByFiltersList.map(movie => (
-                        <MovieCard
-                           key={movie.id}
-                           id={movie.id}
-                           imageUrl={movie.poster.url}
-                           name={movie.name ?? movie.names[0]?.name}
-                           genres={movie.genres}
-                           countries={movie.countries}
-                           description={movie.shortDescription}
-                        />
-                     ))}
+               {moviesByFiltersList && <MovieList
+                  movies={moviesByFiltersList}
+                  currentPage={moviesByFiltersPage}
+                  maxPage={moviesByFiltersPages}
+                  quantity={moviesByFiltersLimit}
+                  changePaginationParams={setByFiltersPaginationParams}
+               />
+               }
 
-                  </PaginationBlock>
-                  }
-               </MovieList>
                {moviesByCollectionIsLoading && <div>Loading...</div>}
                {moviesByCollectionError && <div>{moviesByCollectionError}</div>}
-               <MovieList>
-                  {moviesByCollectionList && <PaginationBlock
-                     currentPage={moviesByCollectionPage}
-                     maxPage={moviesByCollectionPages}
-                     quantity={moviesByCollectionLimit}
-                     changePaginationParams={setByCollectionPaginationParams}
-                  >
-                     {moviesByCollectionList.map(movie => (
-                        <MovieCard
-                           key={movie.id}
-                           id={movie.id}
-                           imageUrl={movie.poster.url}
-                           name={movie.name ?? movie.names[0]?.name}
-                           genres={movie.genres}
-                           countries={movie.countries}
-                           description={movie.shortDescription}
-                        />
-                     ))}
-
-                  </PaginationBlock>
-                  }
-               </MovieList>
+               {moviesByCollectionList && <MovieList
+                  movies={moviesByCollectionList}
+                  currentPage={moviesByCollectionPage}
+                  maxPage={moviesByCollectionPages}
+                  quantity={moviesByCollectionLimit}
+                  changePaginationParams={setByCollectionPaginationParams}
+               />
+               }
             </section>
          </div>
       </div >

@@ -9,7 +9,6 @@ function PaginationSelect({
    changeQuantityParams,
    name,
    list }: IPaginationSelectProps) {
-
    const [selectIsActive, setSelectIsActive] = useState<boolean>(false);
    const [radioGroupValue, setRadioGroupValue] = useState<number>(startRadioValue);
 

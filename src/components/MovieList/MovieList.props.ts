@@ -1,5 +1,8 @@
-import { ReactNode } from "react";
 
 export interface IMovieList {
-   children: ReactNode;
+   movies: any;
+   currentPage: number;
+   maxPage: number | null;
+   quantity: number;
+   changePaginationParams(params: any): void; 
 }

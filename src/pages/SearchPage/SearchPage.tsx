@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import MovieCard from '../../components/MovieCard/MovieCard';
 import TextInput from '../../components/TextInput/TextInput';
 import styles from './SearchPage.module.css';
 import { useDebounce } from '../../hooks/useDebounce';
 import { ISearchParams } from '../../models/ISearchParams';
-import PaginationBlock from '../../components/PaginationBlock/PaginationBlock';
 import MovieList from '../../components/MovieList/MovieList';
 import { useSearchMovieByNameQuery } from '../../store/movieByName/movieByName';
 import { useAuthCheck } from '../../hooks/useAuthCheck';
@@ -41,29 +39,16 @@ function SearchPage() {
                   />
                </div>
             </form>
-            <MovieList>
-               {isLoading && <div>Loading...</div>}
-               {isError && <div>Error...</div>}
-               {data && <PaginationBlock
-                  currentPage={data?.page}
-                  maxPage={data?.pages}
-                  quantity={search.limit}
-                  changePaginationParams={setSearch}
-               >
-                  {data.docs.map(movie => (
-                     <MovieCard
-                        key={movie.id}
-                        id={movie.id}
-                        imageUrl={movie.poster.url}
-                        name={movie.name}
-                        genres={movie.genres}
-                        countries={movie.countries}
-                        description={movie.shortDescription}
-                     />
-                  ))}
-               </PaginationBlock>
-               }
-            </MovieList>
+            {isLoading && <div>Loading...</div>}
+            {isError && <div>Error...</div>}
+            {data && <MovieList
+               movies={data.docs}
+               currentPage={data?.page}
+               maxPage={data?.pages}
+               quantity={search.limit}
+               changePaginationParams={setSearch}
+            />
+            }
          </section>
       </div>
    )
