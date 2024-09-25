@@ -1,5 +1,7 @@
-export interface IMoviesByFiltersState {
+export interface IMoviesByCollectionState {
    movies: any;
+   collectionsNames: string[];
+   currentCollection: string;
    page: number;
    limit: number;
    pages: number | null;

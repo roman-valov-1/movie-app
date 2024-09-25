@@ -5,6 +5,7 @@ import randomMovieSlice  from "./randomMovie/randomMovieSlice";
 import { movieByName } from "./movieByName/movieByName";
 import { movieById } from "./movieById/movieById";
 import moviesByFiltersSlice from "./moviesByFilters/moviesByFiltersSlice";
+import moviesByCollectionSlice from "./moviesByCollection/moviesByCollectionSlice";
 
 
 export const store = configureStore({
@@ -14,7 +15,8 @@ export const store = configureStore({
       randomMovie: randomMovieSlice,
       moviesByFilters: moviesByFiltersSlice,
       [movieByName.reducerPath]: movieByName.reducer,
-      [movieById.reducerPath]: movieById.reducer
+      [movieById.reducerPath]: movieById.reducer,
+      moviesByCollection: moviesByCollectionSlice
    },
    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
       movieByName.middleware, movieById.middleware)

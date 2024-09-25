@@ -5,9 +5,9 @@ import { fetchMoviesByFilters } from "./fetchMovieByFilters";
 
 const initialState: IMoviesByFiltersState = {
    movies: '',
-   statePage: 1,
-   stateLimit: 10,
-   statePages: null,
+   page: 1,
+   limit: 10,
+   pages: null,
    isLoading: false,
    error: ''
 }
@@ -16,11 +16,11 @@ export const moviesByFiltersSlice = createSlice({
    name: 'moviesByFilters',
    initialState,
    reducers: {
-      clearResults(state) {
+      clearState(state) {
          state.movies = '';
-         state.statePage = 1;
-         state.stateLimit = 10;
-         state.statePages = null;
+         state.page = 1;
+         state.limit = 10;
+         state.pages = null;
          state.isLoading = false;
          state.error = '';
       }
@@ -34,9 +34,9 @@ export const moviesByFiltersSlice = createSlice({
          state.isLoading = false;
          state.error = '';
          state.movies = action.payload.docs;
-         state.statePage = action.payload.page;
-         state.stateLimit = action.payload.limit;
-         state.statePages = action.payload.pages;
+         state.page = action.payload.page;
+         state.limit = action.payload.limit;
+         state.pages = action.payload.pages;
       })
       builder.addCase(fetchMoviesByFilters.rejected, (state, action: PayloadAction<string>) => {
          state.isLoading = false;
