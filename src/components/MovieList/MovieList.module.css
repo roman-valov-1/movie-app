@@ -7,3 +7,13 @@
    gap: 30px;
    padding-top: 30px;
 }
+
+.movie-list__content {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   align-items: center;
+   gap: 30px;
+   padding-top: 30px;
+}

@@ -38,13 +38,14 @@ function PaginationBlock({
 
    return (
       <div className={styles['pagination']}>
-         <PaginationSelect
+         {quantity && <PaginationSelect
             isMultiple={false}
             startRadioValue={quantity}
             changeQuantityParams={changePaginationParams}
             name={'quantity'}
             list={quantityFilterList}
          />
+         }
          <div className={styles['pagination__main']}>
             {children}
          </div>

@@ -19,17 +19,19 @@ function MovieList({
             quantity={quantity}
             changePaginationParams={changePaginationParams}
          >
-            {movies && movies.map(movie => (
-               <MovieCard
-                  key={movie?.id}
-                  id={movie?.id}
-                  imageUrl={movie.poster.url}
-                  name={movie.name ?? movie.names[0]?.name}
-                  genres={movie?.genres}
-                  countries={movie?.countries}
-                  description={movie?.shortDescription}
-               />
-            ))}
+            <div className={styles['movie-list__content']}>
+               {movies && movies.map(movie => (
+                  <MovieCard
+                     key={movie?.id}
+                     id={movie?.id}
+                     imageUrl={movie.poster.url}
+                     name={movie.name ?? movie.names[0]?.name}
+                     genres={movie?.genres}
+                     countries={movie?.countries}
+                     description={movie?.shortDescription}
+                  />
+               ))}
+            </div>
 
          </PaginationBlock>
       </div>

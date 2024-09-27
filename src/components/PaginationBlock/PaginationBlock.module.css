@@ -5,13 +5,11 @@
 }
 
 .pagination__main {
+   width: 100%;
    display: flex;
    flex-direction: row;
-   justify-content: space-between;
-   flex-wrap: wrap;
    align-items: center;
-   gap: 30px;
-   padding-top: 30px;
+   justify-content: center;
 }
 
 .pagination__buttons {

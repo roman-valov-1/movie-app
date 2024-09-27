@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import styles from './MoviePage.module.css';
-import Button from "../../components/Button/Button";
 import { useRef } from "react";
 import { useSearchMovieByIdQuery } from "../../store/movieById/movieById";
+import PersonsList from "../../components/PersonsList/PersonsList";
 
 
 
@@ -11,32 +11,32 @@ function MoviePage() {
 
    const { isLoading, isError, data } = useSearchMovieByIdQuery(id);
 
-   const actorsContainer = useRef<HTMLElement | null>(null);
-   const actorsList = useRef<HTMLElement | null>(null);
+   // const actorsContainer = useRef<HTMLElement | null>(null);
+   // const actorsList = useRef<HTMLElement | null>(null);
 
-   let containerX = 0;
-   let xStep = 0;
-   let maxStep = 0;
+   // let containerX = 0;
+   // let xStep = 0;
+   // let maxStep = 0;
 
-   const actorsListButtonsHandler = (str: string) => {
-      xStep = actorsContainer.current.offsetWidth;
-      maxStep = Math.ceil(actorsList.current.offsetWidth / actorsContainer.current.offsetWidth);
+   // const actorsListButtonsHandler = (str: string) => {
+   //    xStep = actorsContainer.current.offsetWidth;
+   //    maxStep = Math.ceil(actorsList.current.offsetWidth / actorsContainer.current.offsetWidth);
 
-      if (str === 'forward') {
-         containerX -= xStep;
-         actorsList.current.style = `transform: translateX(${containerX}px)`;
-      }
-      if (str === 'back') {
-         containerX += xStep;
-         actorsList.current.style = `transform: translateX(${containerX}px)`;
-      }
+   //    if (str === 'forward') {
+   //       containerX -= xStep;
+   //       actorsList.current.style = `transform: translateX(${containerX}px)`;
+   //    }
+   //    if (str === 'back') {
+   //       containerX += xStep;
+   //       actorsList.current.style = `transform: translateX(${containerX}px)`;
+   //    }
 
-   }
-
+   // }
 
    return (
       <div className='container'>
          {isLoading && <div>Loading</div>}
+         {isError && <div>Error</div>}
          {data && <section className={styles['movie']}>
 
             <div className={styles['movie__item-title']}>
@@ -74,23 +74,7 @@ function MoviePage() {
                   <div className={styles['movie__item-title']}>
                      List of actors
                   </div>
-                  <div className={styles['movie__actors-container']} ref={actorsContainer}>
-                     <ul className={styles['movie__actors-list']} ref={actorsList}>
-                        {data?.persons.map(person => {
-                           if (person.name) return (
-                              <li className={styles['movie__actors-item']}>
-                                 <img src={person.photo} alt="" />
-                                 <span>{person.name}</span>
-                              </li>
-                           )
-                           return;
-                        })}
-                     </ul>
-                  </div>
-                  <div className={styles['movie__actors-buttons']}>
-                     <Button onClick={() => actorsListButtonsHandler('back')}>back</Button>
-                     <Button onClick={() => actorsListButtonsHandler('forward')}>forward</Button>
-                  </div>
+                  <PersonsList persons={data.persons} />
                </div>
                <div className={styles['movie__description']}>
                   <div className={styles['movie__item-title']}>

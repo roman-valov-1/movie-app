@@ -12,7 +12,7 @@ function PaginationButtons({
    const onChangePageHandler = (e: MouseEvent): void => {
       const target = e.target as HTMLElement;
 
-      changePage(target.textContent);
+      changePage(Number(target.textContent));
    };
 
    const paginationRange = usePagination({
@@ -31,7 +31,7 @@ function PaginationButtons({
          styleType={'transparent'}
          page={currentPage}
          onClick={onChangePageHandler}
-         disabled={currentPage === 1}>
+         disabled={currentPage == 1}>
          Prev
       </Button>
       {paginationRange.map(pageNumber => {
@@ -52,7 +52,7 @@ function PaginationButtons({
          styleType={'transparent'}
          page={currentPage}
          onClick={onChangePageHandler}
-         disabled={currentPage === lastPage}>
+         disabled={currentPage == lastPage}>
          Next
       </Button>
    </>;
