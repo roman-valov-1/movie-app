@@ -2,10 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { baseURL, token } from "../api-constants";
 
 
-export const fetchMoviesByCollection = createAsyncThunk (
-   'moviesByCollection',
-   async (queryParams, {rejectWithValue}) => {
-
+export const fetchMoviesByFilters = createAsyncThunk(
+   'moviesByFilters',
+   async (queryParams, { rejectWithValue }) => {
       const options = {
          method: 'GET',
          headers: {
@@ -13,23 +12,25 @@ export const fetchMoviesByCollection = createAsyncThunk (
             'X-API-KEY': token
          }
       };
-
+      
       const params = new URLSearchParams({
          page: queryParams.page,
          limit: queryParams.limit,
-         lists: queryParams.collectionName,
+         'genres.name': queryParams.genres,
+         'countries.name': queryParams.countries,
+         year: queryParams.year,
          sortField: 'rating.kp',
-         sortType: '-1'
+         sortType: '-1',
+         notNullFields: 'id'
       }).toString();
 
       try {
          const response = await fetch(`${baseURL}/movie?${params}`, options);
          const data = await response.json();
-         
          return {
-            collectionName: queryParams.collectionName,
             ...data,
-         };
+            query: JSON.stringify(queryParams)
+         }
 
       } catch (e) {
          return rejectWithValue(e.message);

@@ -3,6 +3,7 @@ import styles from './MoviePage.module.css';
 import { useRef } from "react";
 import { useSearchMovieByIdQuery } from "../../store/movieById/movieById";
 import PersonsList from "../../components/PersonsList/PersonsList";
+import Button from "../../components/Button/Button";
 
 
 
@@ -11,27 +12,27 @@ function MoviePage() {
 
    const { isLoading, isError, data } = useSearchMovieByIdQuery(id);
 
-   // const actorsContainer = useRef<HTMLElement | null>(null);
-   // const actorsList = useRef<HTMLElement | null>(null);
+   const similarContainer = useRef<HTMLElement | null>(null);
+   const similarList = useRef<HTMLElement | null>(null);
 
-   // let containerX = 0;
-   // let xStep = 0;
-   // let maxStep = 0;
 
-   // const actorsListButtonsHandler = (str: string) => {
-   //    xStep = actorsContainer.current.offsetWidth;
-   //    maxStep = Math.ceil(actorsList.current.offsetWidth / actorsContainer.current.offsetWidth);
+   let containerX = 0;
+   let xStep = 0;
+   let maxStep = 0;
 
-   //    if (str === 'forward') {
-   //       containerX -= xStep;
-   //       actorsList.current.style = `transform: translateX(${containerX}px)`;
-   //    }
-   //    if (str === 'back') {
-   //       containerX += xStep;
-   //       actorsList.current.style = `transform: translateX(${containerX}px)`;
-   //    }
+   const carouselButtonsHandler = (e) => {
+      xStep = similarContainer.current.offsetWidth;
+      maxStep = Math.ceil(similarList.current.offsetWidth / similarContainer.current.offsetWidth);
 
-   // }
+      if (e.target.value === 'next') {
+         containerX -= xStep;
+         similarList.current.style = `transform: translateX(${containerX}px)`;
+      }
+      if (e.target.value === 'prev') {
+         containerX += xStep;
+         similarList.current.style = `transform: translateX(${containerX}px)`;
+      }
+   }
 
    return (
       <div className='container'>
@@ -84,8 +85,22 @@ function MoviePage() {
                </div>
             </div>
             <div className={styles['movie__similar']}>
-               <div className={styles['movie__item-title']}>
-                  Similar movies
+               <h3>Similar movies</h3>
+               <div className={styles['movie__similar-container']} ref={similarContainer}>
+                  <div className={styles['movie__similar-list']} ref={similarList}>
+                     {data.similarMovies && data.similarMovies.map((movie) => {
+                        return <div key={movie.id}>
+                           <img src={movie.poster.url} alt="" width="150px" height="200px" />
+                           <div>
+                              {movie.name}
+                           </div>
+                        </div>
+                     })}
+                  </div>
+               </div>
+               <div className={styles['movie__similar-buttons']}>
+                  <Button value='prev' onClick={carouselButtonsHandler}>Prev</Button>
+                  <Button value='next' onClick={carouselButtonsHandler}>Next</Button>
                </div>
             </div>
          </section>}

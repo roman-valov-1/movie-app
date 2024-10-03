@@ -36,14 +36,15 @@ function PaginationButtons({
       </Button>
       {paginationRange.map(pageNumber => {
          if (pageNumber === DOTS) {
-            return <div>...</div>;
+            return <div key={Math.random()}>...</div>;
          }
 
          return (
             <Button
                styleType={'transparent'}
                page={currentPage}
-               onClick={onChangePageHandler}>
+               onClick={onChangePageHandler}
+               key={pageNumber}>
                {pageNumber}
             </Button>
          );

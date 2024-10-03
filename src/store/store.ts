@@ -4,8 +4,7 @@ import filtersParamsSlice  from "./filtersParams/filtersParamsSlice";
 import randomMovieSlice  from "./randomMovie/randomMovieSlice";
 import { movieByName } from "./movieByName/movieByName";
 import { movieById } from "./movieById/movieById";
-import moviesByFiltersSlice from "./moviesByFilters/moviesByFiltersSlice";
-import moviesByCollectionSlice from "./moviesByCollection/moviesByCollectionSlice";
+import homePageSlice from "./homePage/homePageSlice";
 
 
 export const store = configureStore({
@@ -13,10 +12,9 @@ export const store = configureStore({
       auth: authSlice, 
       filtersParams: filtersParamsSlice,
       randomMovie: randomMovieSlice,
-      moviesByFilters: moviesByFiltersSlice,
       [movieByName.reducerPath]: movieByName.reducer,
       [movieById.reducerPath]: movieById.reducer,
-      moviesByCollection: moviesByCollectionSlice
+      homePage: homePageSlice
    },
    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(
       movieByName.middleware, movieById.middleware)

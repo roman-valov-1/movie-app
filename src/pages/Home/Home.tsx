@@ -4,13 +4,12 @@ import FiltersBlock from "../../components/FiltersBlock/FiltersBlock";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { IFiltersParams } from "../../models/IFiltersParams";
 import styles from './Home.module.css';
-import { useAppSelector } from "../../hooks/useAppSelector";
-import { fetchMoviesByFilters } from "../../store/moviesByFilters/fetchMovieByFilters";
 import MovieList from "../../components/MovieList/MovieList";
-import { moviesByFiltersActions } from "../../store/moviesByFilters/moviesByFiltersSlice";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import { fetchMoviesByFilters } from "../../store/homePage/fetchMovieByFilters";
+import { fetchMoviesByCollection } from "../../store/homePage/fetchMoviesByCollection";
+import { homePageActions } from "../../store/homePage/homePageSlice";
 import { IPaginationParams } from "../../models/IPaginationParams";
-import { fetchMoviesByCollection } from "../../store/moviesByCollection/fetchMoviesByCollection";
-import { moviesByCollectionActions } from "../../store/moviesByCollection/moviesByCollectionSlice";
 
 
 function Home() {
@@ -21,87 +20,66 @@ function Home() {
       year: ''
    });
 
-   const [byFiltersPaginationParams, setByFiltersPaginationParams] = useState<IPaginationParams>({
+   const [paginationParams, setPaginationParams] = useState<IPaginationParams>({
       page: 1,
       limit: 10
    });
 
-   const [byCollectionPaginationParams, setByCollectionPaginationParams] = useState<IPaginationParams>({
-      page: 1,
-      limit: 10
-   });
 
    const dispatch = useAppDispatch();
 
    const {
-      isLoading: moviesByFiltersIsLoading,
-      error: moviesByFiltersError,
-      movies: moviesByFiltersList,
-      page: moviesByFiltersPage,
-      limit: moviesByFiltersLimit,
-      pages: moviesByFiltersPages
-   } = useAppSelector(s => s.moviesByFilters);
-
-   const {
-      isLoading: moviesByCollectionIsLoading,
-      error: moviesByCollectionError,
-      movies: moviesByCollectionList,
+      isLoading: homePageIsLoading,
+      error: homePageError,
+      movies: homePageList,
       collectionsNames,
-      currentCollection,
-      page: moviesByCollectionPage,
-      limit: moviesByCollectionLimit,
-      pages: moviesByCollectionPages
-   } = useAppSelector(s => s.moviesByCollection);
+      currentQuery,
+      page: homePagePage,
+      limit: homePageLimit,
+      pages: homePagePages
+   } = useAppSelector(s => s.homePage);
 
    const onCollectionButtonClick = (e: MouseEvent) => {
-      dispatch(moviesByFiltersActions.clearState());
       dispatch(fetchMoviesByCollection({
          page: 1,
-         limit: 10,
+         limit: paginationParams.limit,
          collectionName: e.target.name,
       }))
    };
 
    const onFiltersSubmit = (e: BaseSyntheticEvent) => {
       e.preventDefault();
-      dispatch(moviesByCollectionActions.clearState());
       dispatch(fetchMoviesByFilters({
          page: 1,
-         limit: byFiltersPaginationParams.limit,
+         limit: paginationParams.limit,
          ...searchParams
       }));
    };
 
    useEffect(() => {
-      if (searchParams.genres && searchParams.countries && searchParams.year) {
-         dispatch(fetchMoviesByFilters({
-            ...byFiltersPaginationParams,
-            ...searchParams
-         }));
-      }
-   }, [byFiltersPaginationParams])
-
-   useEffect(() => {
-      if (currentCollection) {
-         dispatch(fetchMoviesByCollection({
-            collectionName: currentCollection,
-            ...byCollectionPaginationParams,
-         }))
-      }
-   }, [byCollectionPaginationParams])
-
-   useEffect(() => {
       dispatch(fetchMoviesByCollection({
-         page: 1,
-         limit: 10,
-         collectionName: collectionsNames[0],
+         ...paginationParams,
+         collectionName: currentQuery,
       }))
 
       return () => {
-         dispatch(moviesByFiltersActions.clearState());
-         dispatch(moviesByCollectionActions.clearState());
+         dispatch(homePageActions.clearState());
       }
    }, [])
+
+   useEffect(() => {
+      if (collectionsNames.find((i) => i == currentQuery)) {
+         dispatch(fetchMoviesByCollection({
+            ...paginationParams,
+            collectionName: currentQuery,
+         }))
+      } else {
+         dispatch(fetchMoviesByFilters({
+            ...searchParams,
+            ...paginationParams
+         }));
+      }
+   }, [paginationParams])
 
    return (
       <div className="container" >
@@ -114,7 +92,8 @@ function Home() {
                         className={styles["home__collection-button"]}
                         name={i}
                         onClick={onCollectionButtonClick}
-                        disabled={i === currentCollection}>
+                        disabled={i === currentQuery}
+                        key={i}>
                         {i}
                      </button>
                   ))}
@@ -126,25 +105,14 @@ function Home() {
             </aside>
             <section className={styles["home__content"]}>
                <h2>Results</h2>
-               {moviesByFiltersIsLoading && <div>Loading...</div>}
-               {moviesByFiltersError && <div>{moviesByFiltersError}</div>}
-               {moviesByFiltersList && <MovieList
-                  movies={moviesByFiltersList}
-                  currentPage={moviesByFiltersPage}
-                  maxPage={moviesByFiltersPages}
-                  quantity={moviesByFiltersLimit}
-                  changePaginationParams={setByFiltersPaginationParams}
-               />
-               }
-
-               {moviesByCollectionIsLoading && <div>Loading...</div>}
-               {moviesByCollectionError && <div>{moviesByCollectionError}</div>}
-               {moviesByCollectionList && <MovieList
-                  movies={moviesByCollectionList}
-                  currentPage={moviesByCollectionPage}
-                  maxPage={moviesByCollectionPages}
-                  quantity={moviesByCollectionLimit}
-                  changePaginationParams={setByCollectionPaginationParams}
+               {homePageIsLoading && <div>Loading...</div>}
+               {homePageError && <div>{homePageError}</div>}
+               {homePageList && <MovieList
+                  movies={homePageList}
+                  currentPage={homePagePage}
+                  maxPage={homePagePages}
+                  quantity={homePageLimit}
+                  changePaginationParams={setPaginationParams}
                />
                }
             </section>
