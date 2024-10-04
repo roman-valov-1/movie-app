@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PaginationBlock from "../PaginationBlock/PaginationBlock";
 import styles from './PersonsList.module.css';
+import { getChunkedArray } from "../../helpers/getChunkedArray";
 
 function PersonsList({ persons }) {
 
@@ -9,16 +10,8 @@ function PersonsList({ persons }) {
       page: 1
    });
 
-   function getUnflatArray(arr, count) {
-      const result = [];
-
-      for (let s = 0, e = count; s < arr.length; s += count, e += count)
-         result.push(arr.slice(s, e));
-      return result;
-   }
-
    useEffect(() => {
-      setPersonsArray(getUnflatArray(persons, 10));
+      setPersonsArray(getChunkedArray(persons, 10));
    }, [])
 
    return (

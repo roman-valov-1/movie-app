@@ -29,14 +29,14 @@ function Home() {
    const dispatch = useAppDispatch();
 
    const {
-      isLoading: homePageIsLoading,
-      error: homePageError,
-      movies: homePageList,
+      isLoading,
+      error,
+      movies,
       collectionsNames,
       currentQuery,
       page: homePagePage,
       limit: homePageLimit,
-      pages: homePagePages
+      pages
    } = useAppSelector(s => s.homePage);
 
    const onCollectionButtonClick = (e: MouseEvent) => {
@@ -105,12 +105,12 @@ function Home() {
             </aside>
             <section className={styles["home__content"]}>
                <h2>Results</h2>
-               {homePageIsLoading && <div>Loading...</div>}
-               {homePageError && <div>{homePageError}</div>}
-               {homePageList && <MovieList
-                  movies={homePageList}
+               {isLoading && <div>Loading...</div>}
+               {error && <div>{error}</div>}
+               {movies && <MovieList
+                  movies={movies}
                   currentPage={homePagePage}
-                  maxPage={homePagePages}
+                  maxPage={pages}
                   quantity={homePageLimit}
                   changePaginationParams={setPaginationParams}
                />

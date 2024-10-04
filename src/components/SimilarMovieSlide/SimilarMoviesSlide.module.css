@@ -1,0 +1,18 @@
+.similar-slide {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.similar-slide__item {
+   display: flex;
+   flex-direction: column;
+   row-gap: 10px;
+}
+.similar-slide__item img {
+   aspect-ratio: 10/16;
+}
+
+.similar-slide__name {
+   align-self: center;
+}

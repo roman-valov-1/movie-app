@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './Header.module.css';
 import Button from '../Button/Button';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -8,10 +8,12 @@ import { authActions } from '../../store/auth/authSlice';
 function Header() {
 
    const dispatch = useAppDispatch();
+   const navigate = useNavigate();
    const { isAuth, user } = useAppSelector(s => s.auth);
 
    const logoutHandler = () => {
       dispatch(authActions.logout());
+      navigate('/login');
    }
 
    return (

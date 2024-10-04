@@ -58,19 +58,3 @@
    text-transform: uppercase;
    padding: 10px 0px;
 }
-
-.movie__similar-container {
-   overflow: hidden;
-   
-}
-
-.movie__similar-list {
-   display: flex;
-   flex-direction: row;
-   column-gap: 20px;
-   transition: all 0.3s ease;
-}
-.movie__similar-buttons {
-   display: flex;
-   justify-content: space-between;
-}
