@@ -3,13 +3,13 @@ import styles from './MoviePage.module.css';
 import { useSearchMovieByIdQuery } from "../../store/movieById/movieById";
 import PersonsList from "../../components/PersonsList/PersonsList";
 import SimilarMovies from "../../components/SimilarMovies/SimilarMovies";
+import KinoboxPlayer from "../../components/KinoboxPlayer/KinoboxPlayer";
 
 
 function MoviePage() {
    const { id } = useParams();
 
    const { isLoading, isError, data } = useSearchMovieByIdQuery(id);
-
 
    return (
       <div className='container'>
@@ -48,6 +48,7 @@ function MoviePage() {
                </div>
             </div>
             <div className={styles['movie__main']}>
+               <KinoboxPlayer kinopoiskId={id} imdbId={data.externalId?.imdb}/>
                <div className={styles['movie__actors']}>
                   <div className={styles['movie__item-title']}>
                      List of actors

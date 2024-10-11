@@ -19,7 +19,7 @@ export const fetchMoviesByFilters = createAsyncThunk(
          'genres.name': queryParams.genres,
          'countries.name': queryParams.countries,
          year: queryParams.year,
-         sortField: 'rating.kp',
+         sortField: 'votes.kp',
          sortType: '-1',
          notNullFields: 'id'
       }).toString();

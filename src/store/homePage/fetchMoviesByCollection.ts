@@ -18,7 +18,7 @@ export const fetchMoviesByCollection = createAsyncThunk (
          page: queryParams.page,
          limit: queryParams.limit,
          lists: queryParams.collectionName,
-         sortField: 'rating.kp',
+         sortField: 'votes.kp',
          sortType: '-1',
          notNullFields: 'id'
       }).toString();

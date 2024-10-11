@@ -9,6 +9,8 @@ function SimilarMovies({ movies }) {
 
    const similarContainer = useRef<HTMLDivElement | null>(null);
    const similarList = useRef<HTMLDivElement | null>(null);
+   const translateX = useRef<number>(0);
+   const xStep = useRef<number>(0);
 
    const [stepCounter, setStepCounter] = useState(0);
    const [moviesArray, setMoviesArray] = useState(null);
@@ -16,12 +18,19 @@ function SimilarMovies({ movies }) {
    const itemWidth = 150;
    let itemsPerSlide = 0;
 
+
    const carouselButtonsHandler = (e) => {
+      xStep.current = similarContainer.current.offsetWidth;
+
       if (e.target.value === 'next') {
          setStepCounter(value => value + 1);
+         translateX.current -= xStep.current;
+         similarList.current.style = `transform: translateX(${translateX.current}px)`;
       }
       if (e.target.value === 'prev') {
+         translateX.current += xStep.current;
          setStepCounter(value => value - 1);
+         similarList.current.style = `transform: translateX(${translateX.current}px)`;
       }
    }
 
@@ -35,11 +44,11 @@ function SimilarMovies({ movies }) {
       <div className={styles['similar-movies__container']} ref={similarContainer}>
          <div className={styles['similar-movies__list']} ref={similarList}>
             {moviesArray && moviesArray.map((slide, index) => {
-               return index === stepCounter ? <SimilarMovieSlide
+               return <SimilarMovieSlide
                   arr={slide}
                   containerWidth={similarContainer.current.offsetWidth}
                   itemWidth={itemWidth}
-               /> : null
+               />
             })}
          </div>
          <div className={styles['similar-movies__buttons']}>

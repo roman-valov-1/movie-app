@@ -25,7 +25,7 @@ function MovieList({
                      key={movie?.id}
                      id={movie?.id}
                      imageUrl={movie.poster.url}
-                     name={movie.name ?? movie.names[0]?.name}
+                     name={movie.name ?? movie.names[0]?.name ?? movie.alternativeName}
                      genres={movie?.genres}
                      countries={movie?.countries}
                      description={movie?.shortDescription}
