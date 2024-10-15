@@ -1,9 +1,9 @@
 :root {
-  --background-primary-color: #0e0d0d;
-  --background-secondary-color: #292828;
+  --background-primary-color: #181818;
+  --background-secondary-color: #2A2A2A;
   --text-color: #fff;
-  --primary-color: #6200EE;
-  --secondary-color: #03DAC6;
+  --primary-color: #24B47E;
+  --secondary-color: #32dd9e;
 }
 
 * {
@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: "Titillium Web", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 #root {

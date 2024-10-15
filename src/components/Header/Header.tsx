@@ -4,12 +4,16 @@ import Button from '../Button/Button';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { authActions } from '../../store/auth/authSlice';
+import { useState } from 'react';
+import cn from 'classnames';
 
 function Header() {
 
    const dispatch = useAppDispatch();
    const navigate = useNavigate();
    const { isAuth, user } = useAppSelector(s => s.auth);
+
+   const [menuIsActive, setMenuIsActive] = useState<boolean>(false);
 
    const logoutHandler = () => {
       dispatch(authActions.logout());
@@ -20,12 +24,19 @@ function Header() {
       <header className={styles['header']}>
          <div className='container'>
             <div className={styles['header__flex-container']}>
-               <NavLink to="/" className={styles['header__link']}>
+               <NavLink to="/" className={styles['header__logo']}>
                   MOVIE APP
                </NavLink>
-               <nav className={styles['navbar']}>
-
-                  
+               <button
+                  className={cn(styles['header__burger'], {
+                     [styles['header__burger_active']]: menuIsActive === true
+                  })}
+                  onClick={() => setMenuIsActive(s => !s)}>
+                  <span></span>
+               </button>
+               <nav className={cn(styles['navbar'], {
+                  [styles['navbar_active']]: menuIsActive === true
+               })}>
                   {isAuth && <>
                      <NavLink to="/search-page" className={styles['header__link']}>
                         Search

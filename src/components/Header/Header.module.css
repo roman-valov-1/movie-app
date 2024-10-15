@@ -1,6 +1,7 @@
 .header {
    height: 4rem;
-   background-color: var(--background-secondary-color);
+   background-color: var(--background-primary-color);
+   border-bottom: 1px solid var(--background-secondary-color);
 }
 
 .header__flex-container {
@@ -11,11 +12,21 @@
    justify-content: space-between;
 }
 
-.header__link {
+.header__logo {
    font-size: 1.3rem;
    font-weight: 600;
    text-decoration: none;
    color: var(--primary-color);
+   cursor: pointer;
+   text-transform: uppercase;
+   outline: none;
+}
+
+.header__link {
+   font-size: 1rem;
+   font-weight: 600;
+   text-decoration: none;
+   color: var(--text-color);
    cursor: pointer;
    text-transform: uppercase;
    outline: none;
@@ -26,7 +37,9 @@
 }
 
 .header__link:hover,
-.header__link:focus {
+.header__link:focus,
+.header__logo:hover,
+.header__logo:focus {
    color: var(--secondary-color);
 }
 
@@ -35,4 +48,86 @@
    flex-direction: row;
    align-items: center;
    gap: 20px;
+}
+
+.header__burger {
+   display: none;
+   width: 30px;
+   height: 30px;
+   position: relative;
+   z-index: 30;
+   transition: 0.3s ease;
+   background-color: var(--primary-color);
+   border: none;
+   border-radius: 3px;
+}
+
+@media (width <=767.98px) {
+   .navbar {
+      position: fixed;
+      flex-direction: column;
+      align-items: start;
+      gap: 20px;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 320px;
+      height: 100%;
+      background-color: var(--background-secondary-color);
+      z-index: 20;
+      padding: 70px 15px 0px 15px;
+      transition: 0.3s ease;
+   }
+
+   .navbar_active {
+      display: flex;
+      right: 0vw;
+   }
+
+   .header__burger {
+      display: block;
+   }
+
+   .header__burger span {
+      position: absolute;
+      background-color: var(--text-color);
+      width: 70%;
+      height: 2px;
+      left: 16%;
+      top: calc(50% - 1px);
+      transition: 0.3s ease;
+   }
+
+   .header__burger::before,
+   .header__burger::after {
+      position: absolute;
+      content: "";
+      background-color: var(--text-color);
+      width: 70%;
+      height: 2px;
+      left: 16%;
+      transition: 0.3s ease;
+   }
+
+   .header__burger::before {
+      top: 5px;
+   }
+
+   .header__burger::after {
+      bottom: 5px;
+   }
+
+   .header__burger_active span {
+      transform: scale(0);
+   }
+
+   .header__burger_active::before {
+      top: 50%;
+      transform: rotate(-45deg) translate(0px, -50%);
+   }
+
+   .header__burger_active::after {
+      bottom: 50%;
+      transform: rotate(45deg) translate(0px, 50%);
+   }
 }

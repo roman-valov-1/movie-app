@@ -27,7 +27,7 @@ function SearchPage() {
 
    return (
       <div className='container'>
-         <h1 className='h1'>Let's find something good</h1>
+         <h1 className='h1'>Поиск по названию</h1>
          <section className={styles['search']}>
             <form className={styles['search__form']} >
                <div className={styles['search__form-item']}>

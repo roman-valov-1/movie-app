@@ -9,11 +9,11 @@
 }
 
 .movie-list__content {
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   flex-wrap: wrap;
-   align-items: center;
-   gap: 30px;
+   width: 100%;
+   display: grid;
+   grid-auto-flow: row;
+   grid-template-columns: repeat(auto-fit, 300px);
+   justify-content: space-evenly;
+   row-gap: 20px;
    padding-top: 30px;
 }

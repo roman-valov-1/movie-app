@@ -7,10 +7,11 @@
    outline: none;
    padding: 0.8rem;
    color: var(--text-color);
-   background-color: var(--background-primary-color)
+   background-color: var(--background-primary-color);
 }
 
 .input:hover,
 .input:focus {
    border-color: var(--secondary-color);
+   background-color: var(--background-primary-color)
 }
