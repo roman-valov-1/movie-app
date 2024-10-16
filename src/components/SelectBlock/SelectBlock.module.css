@@ -1,7 +1,7 @@
 .select,
 .select_active{
    position: relative;
-   background-color: black;
+   background-color: var(--background-secondary-color);
    min-width: 12rem;
    border: 1px solid var(--primary-color);
    border-radius: 5px;

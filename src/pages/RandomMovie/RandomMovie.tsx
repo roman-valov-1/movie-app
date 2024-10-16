@@ -51,12 +51,8 @@ function RandomMovie() {
                   {isLoadingMovie && <p>Loading Movie</p>}
                   {error && <p>{error}</p>}
                   {movie && <MovieCard
-                     id={movie?.id}
-                     imageUrl={movie?.poster?.url}
-                     name={movie.name ?? movie.names[0]?.name ?? movie.alternativeName}
-                     genres={movie?.genres}
-                     countries={movie?.countries}
-                     description={movie?.shortDescription}
+                     key={movie.id}
+                     data={movie}
                   />
                   }
                </>

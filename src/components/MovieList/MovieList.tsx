@@ -22,13 +22,8 @@ function MovieList({
             <div className={styles['movie-list__content']}>
                {movies && movies.map(movie => (
                   <MovieCard
-                     key={movie?.id}
-                     id={movie?.id}
-                     imageUrl={movie.poster.url}
-                     name={movie.name ?? movie.names[0]?.name ?? movie.alternativeName}
-                     genres={movie?.genres}
-                     countries={movie?.countries}
-                     description={movie?.shortDescription}
+                     key={movie.id}
+                     data={movie}
                   />
                ))}
             </div>

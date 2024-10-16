@@ -38,11 +38,15 @@ function Header() {
                   [styles['navbar_active']]: menuIsActive === true
                })}>
                   {isAuth && <>
-                     <NavLink to="/search-page" className={styles['header__link']}>
-                        Search
+                     <NavLink to="/search-page"
+                        className={styles['header__link']}
+                        onClick={() => setMenuIsActive(s => !s)}>
+                        Поиск
                      </NavLink>
-                     <NavLink to="/random-movie" className={styles['header__link']}>
-                        Random movie
+                     <NavLink to="/random-movie"
+                        className={styles['header__link']}
+                        onClick={() => setMenuIsActive(s => !s)}>
+                        Случайный фильм
                      </NavLink>
                      <span>{user?.name}</span>
                      <Button onClick={logoutHandler}>
@@ -50,7 +54,9 @@ function Header() {
                      </Button>
                   </>
                   }
-                  {!isAuth && <NavLink to="/login" className={styles['header__link']}>
+                  {!isAuth && <NavLink to="/login" 
+                  className={styles['header__link']} 
+                  onClick={() => setMenuIsActive(s => !s)}>
                      Log in
                   </NavLink>}
                </nav>

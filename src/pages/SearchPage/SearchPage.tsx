@@ -24,6 +24,9 @@ function SearchPage() {
       refetchOnFocus: true
    });
 
+   const handleSearchInputChange = (e) => {
+      setSearch(prevState => ({...prevState, search: e.target.value}));
+   }
 
    return (
       <div className='container'>
@@ -35,7 +38,7 @@ function SearchPage() {
                      type={'text'}
                      name={'search'}
                      placeholder={"Type a film's name"}
-                     onChange={e => setSearch(prevState => ({ ...prevState, search: e.target.value }))}
+                     onChange={handleSearchInputChange}
                   />
                </div>
             </form>

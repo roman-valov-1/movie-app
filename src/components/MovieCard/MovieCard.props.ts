@@ -12,5 +12,6 @@ export interface IMovieCard {
    name: string;
    genres?: genre[];
    countries?: country[];
-   description?: string;
+   ratingIMDB?: number;
+   ratingKP?: number;
 }
