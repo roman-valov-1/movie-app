@@ -19,7 +19,7 @@ export const movieByName = createApi({
             params: {
                page: searchParams.page,
                limit: searchParams.limit,
-               query: searchParams.search
+               query: searchParams.text
             }
          })
       })

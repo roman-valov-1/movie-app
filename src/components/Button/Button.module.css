@@ -28,7 +28,7 @@
 }
 
 .button:hover,
-.button:focus {
+.button:focus{
    border-color: var(--secondary-color);
    background-color: var(--secondary-color);
 }

@@ -40,3 +40,9 @@
    color: var(--secondary-color);
    cursor: not-allowed;
 }
+
+@media (width <= 991.98px) {
+   .home {
+      flex-direction: column;
+   }
+}

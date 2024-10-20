@@ -25,7 +25,7 @@ function MovieCard( {data}: IMovieCard) {
             </div>
             <div className={styles['movie-card__info-item']}>
                {data.countries ? data.countries.map(i => i.name).join(', ') : NO_DATA}&nbsp;|&nbsp; 
-               {data.year && NO_DATA}
+               {data.year ?? NO_DATA}
             </div>
             <div className={styles['movie-card__rating']}>
                <div className={styles['movie-card__rating-item']}>

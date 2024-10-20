@@ -1,5 +1,5 @@
 export interface ISearchParams {
-   search: string;
+   text: string;
    page: number;
    limit: number;
 }

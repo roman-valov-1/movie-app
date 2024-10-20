@@ -14,7 +14,7 @@ function RandomMovie() {
 
    useAuthCheck();
 
-   const [searchParams, setSearchParams] = useState<IFiltersParams>({
+   const [filtersParams, setFiltersParams] = useState<IFiltersParams>({
       genres: '',
       countries: '',
       year: ''
@@ -32,7 +32,7 @@ function RandomMovie() {
 
    const onSubmit = (e: BaseSyntheticEvent) => {
       e.preventDefault();
-      dispatch(fetchRandomMovie(searchParams));
+      dispatch(fetchRandomMovie(filtersParams));
    }
 
    return (
@@ -41,7 +41,7 @@ function RandomMovie() {
          <div className={styles["random"]}>
             <aside className={styles["random__aside"]}>
                <FiltersBlock
-                  setSearchParams={setSearchParams}
+                  setSearchParams={setFiltersParams}
                   onSubmit={onSubmit}
                />
             </aside>

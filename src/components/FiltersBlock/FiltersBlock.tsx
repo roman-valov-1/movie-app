@@ -9,7 +9,7 @@ import { useAppSelector } from '../../hooks/useAppSelector';
 
 
 
-function FiltersBlock({ setSearchParams, onSubmit}: IFiltersBlockProps) {
+function FiltersBlock({ setSearchParams, onSubmit }: IFiltersBlockProps) {
 
    const dispatch = useAppDispatch();
 
@@ -60,23 +60,25 @@ function FiltersBlock({ setSearchParams, onSubmit}: IFiltersBlockProps) {
       <>
          {isLoading && <p>Loading...</p>}
          {error && <p>{error}</p>}
-         {Boolean(genres) && Boolean(countries) && 
-         <form className={styles["random__form"]} onChange={formChangeHandler} onSubmit={onSubmit}>
-            <h2>Filters</h2>
-            <div className={styles['random__form-item']}>
-               <span>Год выпуска:</span>
-               <SelectBlock list={year} name={'year'} startRadioValue={year[0]} />
-            </div>
-            <div className={styles['random__form-item']}>
-               <span>Год выпуска:</span>
-               <SelectBlock list={genres} name={'genres'} startRadioValue={genres[0]} />
-            </div>
-            <div className={styles['random__form-item']}>
-               <span>Год выпуска:</span>
-               <SelectBlock list={countries} name={'countries'} startRadioValue={countries[0]} />
-            </div>
-            <Button>Искать</Button>
-         </form>
+         {Boolean(genres) && Boolean(countries) &&
+            <form className={styles['filters']} onChange={formChangeHandler} onSubmit={onSubmit}>
+               <h2>Filters</h2>
+               <div className={styles['filters__form']}>
+                  <div className={styles['filters__form-item']}>
+                     <span>Год выпуска:</span>
+                     <SelectBlock list={year} name={'year'} startRadioValue={year[0]} />
+                  </div>
+                  <div className={styles['filters__form-item']}>
+                     <span>Жанр:</span>
+                     <SelectBlock list={genres} name={'genres'} startRadioValue={genres[0]} />
+                  </div>
+                  <div className={styles['filters__form-item']}>
+                     <span>Страна производства:</span>
+                     <SelectBlock list={countries} name={'countries'} startRadioValue={countries[0]} />
+                  </div>
+               </div>
+               <Button>Искать</Button>
+            </form>
          }
       </>
    )

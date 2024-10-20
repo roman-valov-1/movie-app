@@ -1,5 +1,5 @@
 .select,
-.select_active{
+.select_active {
    position: relative;
    background-color: var(--background-secondary-color);
    min-width: 12rem;
@@ -7,7 +7,6 @@
    border-radius: 5px;
    width: 100%;
    max-width: 320px;
-   margin-left: auto;
 }
 
 .select_active {
@@ -46,6 +45,7 @@
    border: 1px solid var(--primary-color);
    border-radius: 0px 0px 5px 5px;
 }
+
 .select__list_active {
    z-index: 10;
    display: block;
@@ -58,6 +58,15 @@
    padding: 0.2rem;
    overflow: hidden;
 }
+
 .select__list-item:not(:first-child) {
    border-top: 1px solid var(--background-secondary-color);
+}
+
+@media (width <=767.98px) {
+
+   .select,
+   .select_active {
+      max-width: 100%;
+   }
 }

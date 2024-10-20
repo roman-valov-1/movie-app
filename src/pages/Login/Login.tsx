@@ -44,7 +44,6 @@ function Login() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-
           <div>
             <span className={styles['login-form__input-title']}>PASSWORD:</span>
             <TextInput

@@ -2,31 +2,27 @@ import { useState } from 'react';
 import TextInput from '../../components/TextInput/TextInput';
 import styles from './SearchPage.module.css';
 import { useDebounce } from '../../hooks/useDebounce';
-import { ISearchParams } from '../../models/ISearchParams';
 import MovieList from '../../components/MovieList/MovieList';
 import { useSearchMovieByNameQuery } from '../../store/movieByName/movieByName';
 import { useAuthCheck } from '../../hooks/useAuthCheck';
+import { IPaginationParams } from '../../models/IPaginationParams';
 
 function SearchPage() {
 
    useAuthCheck();
-
-   const [search, setSearch] = useState<ISearchParams>({
-      search: '',
+   const [searchInputText, setSearchInputText] = useState<string>('');
+   const [paginationParams, setPaginationParams] = useState<IPaginationParams>({
       page: 1,
       limit: 10
    });
 
-   const debounced = useDebounce(search.search);
+   const debouncedText = useDebounce(searchInputText);
 
-   const { isLoading, isError, data } = useSearchMovieByNameQuery(search, {
-      skip: debounced.length < 3,
+   const { isLoading, isError, data } = useSearchMovieByNameQuery({text: debouncedText, ...paginationParams}, {
+      skip: debouncedText.length < 3,
       refetchOnFocus: true
    });
 
-   const handleSearchInputChange = (e) => {
-      setSearch(prevState => ({...prevState, search: e.target.value}));
-   }
 
    return (
       <div className='container'>
@@ -38,7 +34,8 @@ function SearchPage() {
                      type={'text'}
                      name={'search'}
                      placeholder={"Type a film's name"}
-                     onChange={handleSearchInputChange}
+                     onChange={(e) => setSearchInputText(e.target.value)}
+                     value={searchInputText}
                   />
                </div>
             </form>
@@ -48,8 +45,8 @@ function SearchPage() {
                movies={data.docs}
                currentPage={data?.page}
                maxPage={data?.pages}
-               quantity={search.limit}
-               changePaginationParams={setSearch}
+               quantity={paginationParams.limit}
+               changePaginationParams={setPaginationParams}
             />
             }
          </section>

@@ -18,3 +18,10 @@
    padding: 20px;
    border-radius: 20px;
 }
+
+@media (width <= 991.98px) {
+   .random {
+      flex-direction: column;
+      gap: 20px;
+   }
+}
