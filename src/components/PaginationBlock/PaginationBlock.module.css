@@ -18,3 +18,9 @@
    align-self: center;
    gap: 15px;
 }
+
+@media (width <= 575.98px) {
+   .pagination__buttons {
+      gap: 12px;
+   }
+}

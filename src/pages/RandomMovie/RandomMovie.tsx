@@ -47,7 +47,7 @@ function RandomMovie() {
             </aside>
             <section className={styles["random__content"]}>
                <h2>Results</h2>
-               <>
+               <div className={styles['random__content-result']}>
                   {isLoadingMovie && <p>Loading Movie</p>}
                   {error && <p>{error}</p>}
                   {movie && <MovieCard
@@ -55,7 +55,7 @@ function RandomMovie() {
                      data={movie}
                   />
                   }
-               </>
+               </div>
             </section>
          </div>
       </div >

@@ -1,5 +1,4 @@
-.button,
-.button_transparent {
+.button {
    height: 2.5rem;
    font-size: 1rem;
    border: 1px solid var(--primary-color);
@@ -10,6 +9,16 @@
    background-color: var(--primary-color);
    text-transform: uppercase;
    cursor: pointer;
+}
+
+.button_transparent {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 40px;
+   height: 40px;
+   font-size: 1rem;
+   padding: 0;
 }
 
 .button.button_transparent {
@@ -28,7 +37,7 @@
 }
 
 .button:hover,
-.button:focus{
+.button:focus {
    border-color: var(--secondary-color);
    background-color: var(--secondary-color);
 }
@@ -36,4 +45,22 @@
 .button_transparent:hover,
 .button_transparent:focus {
    border-color: var(--secondary-color);
+}
+
+
+
+@media (width <= 575.98px) {
+   .button_transparent {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+   }
+}
+
+@media (width <= 479.98px) {
+   .button_transparent {
+      width: 32px;
+      height: 32px;
+      font-size: 0.8rem;
+   }
 }

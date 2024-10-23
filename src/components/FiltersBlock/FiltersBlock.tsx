@@ -20,8 +20,6 @@ function FiltersBlock({ setSearchParams, onSubmit }: IFiltersBlockProps) {
       error
    } = useAppSelector(state => state.filtersParams);
 
-
-
    const formChangeHandler = (e: ChangeEvent) => {
 
       e.currentTarget.querySelectorAll('input').forEach(function (input) {

@@ -1,22 +1,20 @@
 
-import { MouseEvent } from 'react';
 import { IPaginationButtonsBlock } from './PaginationButtons.props';
 import { DOTS, usePagination } from '../../hooks/usePagination';
 import Button from '../Button/Button';
+import styles from './PaginationButtons.module.css';
 
 function PaginationButtons({
    currentPage,
    maxPage,
-   changePage }: IPaginationButtonsBlock) {
+   changePage, 
+   windowWidth }: IPaginationButtonsBlock) {
 
-   const onChangePageHandler = (e: MouseEvent): void => {
-      const target = e.target as HTMLElement;
-
-      changePage(Number(target.textContent));
-   };
+   const siblingCount = windowWidth < 576 ? 0 : 1;
 
    const paginationRange = usePagination({
       maxPage,
+      siblingCount,
       currentPage
    });
 
@@ -26,13 +24,16 @@ function PaginationButtons({
 
    const lastPage = paginationRange[paginationRange.length - 1]
 
+
    return <>
       <Button
          styleType={'transparent'}
          page={currentPage}
-         onClick={onChangePageHandler}
+         onClick={() => changePage('prev')}
          disabled={currentPage == 1}>
-         Prev
+         <svg className={styles['svg']}>
+            <use href="./icons-sprite.svg#arrow-left"></use>
+         </svg>
       </Button>
       {paginationRange.map(pageNumber => {
          if (pageNumber === DOTS) {
@@ -43,7 +44,7 @@ function PaginationButtons({
             <Button
                styleType={'transparent'}
                page={currentPage}
-               onClick={onChangePageHandler}
+               onClick={() => changePage(pageNumber)}
                key={pageNumber}>
                {pageNumber}
             </Button>
@@ -52,9 +53,11 @@ function PaginationButtons({
       <Button
          styleType={'transparent'}
          page={currentPage}
-         onClick={onChangePageHandler}
+         onClick={() => changePage('next')}
          disabled={currentPage == lastPage}>
-         Next
+         <svg className={styles['svg']}>
+            <use href="./icons-sprite.svg#arrow-right"></use>
+         </svg>
       </Button>
    </>;
 }

@@ -4,6 +4,7 @@ import { ISearchParams } from '../../models/ISearchParams.ts';
 import PaginationButtons from '../PaginationButtons/PaginationButtons.tsx';
 import { useScrollIntoView } from '../../hooks/useScrollIntoView.ts';
 import PaginationSelect from '../PaginationSelect/PaginationSelect.tsx';
+import { useLayoutEffect, useState } from 'react';
 
 
 function PaginationBlock({
@@ -15,26 +16,35 @@ function PaginationBlock({
 }: IPaginationContainerProps) {
 
    const quantityFilterList: number[] = [10, 20, 50];
+   const [windowWidth, setWindowWidth] = useState<number>(0);
 
-
-   const changePage = (value: string): void => {
-
-      if (value == 'Next') {
+   const changePage = (value: string | number): void => {
+      if (value == 'next') {
          changePaginationParams((prevState: ISearchParams) => ({ ...prevState, page: +prevState.page + 1 }))
          useScrollIntoView();
          return;
       }
 
-      if (value == 'Prev') {
+      if (value == 'prev') {
          changePaginationParams((prevState: ISearchParams) => ({ ...prevState, page: +prevState.page - 1 }))
          useScrollIntoView();
          return;
       }
 
-      changePaginationParams((prevState: ISearchParams) => ({ ...prevState, page: value }));
+      changePaginationParams((prevState: ISearchParams) => ({ ...prevState, page: +value }));
 
       useScrollIntoView();
    }
+
+   const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+   }
+
+   useLayoutEffect(() => {
+      handleWindowResize();
+      window.addEventListener('resize', handleWindowResize);
+      return () => window.removeEventListener('resize', handleWindowResize)
+   }, [])
 
    return (
       <div className={styles['pagination']}>
@@ -54,6 +64,7 @@ function PaginationBlock({
                currentPage={currentPage}
                maxPage={maxPage}
                changePage={changePage}
+               windowWidth={windowWidth}
             />
          </div>}
       </div>
