@@ -86,17 +86,22 @@ function Home() {
          <h1 className="h1">Movies</h1>
          <div className={styles["home"]}>
             <aside className={styles["home__aside"]}>
-               <div>
-                  {collectionsNames.map(i => (
-                     <button
-                        className={styles["home__collection-button"]}
-                        name={i}
-                        onClick={onCollectionButtonClick}
-                        disabled={i === currentQuery}
-                        key={i}>
-                        {i}
-                     </button>
-                  ))}
+               <div className={styles["home__collections"]}>
+                  <h2>
+                     Поиск по подборкам
+                  </h2>
+                  <div className={styles["home__collections-buttons"]}>
+                     {collectionsNames.map(i => (
+                        <button
+                           className={styles["home__collections-item"]}
+                           name={i}
+                           onClick={onCollectionButtonClick}
+                           disabled={i === currentQuery}
+                           key={i}>
+                           {i}
+                        </button>
+                     ))}
+                  </div>
                </div>
                <FiltersBlock
                   setSearchParams={setSearchParams}

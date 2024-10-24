@@ -56,7 +56,7 @@ function PaginationButtons({
          onClick={() => changePage('next')}
          disabled={currentPage == lastPage}>
          <svg className={styles['svg']}>
-            <use href="./icons-sprite.svg#arrow-right"></use>
+            <use href={"./icons-sprite.svg#arrow-right"}></use>
          </svg>
       </Button>
    </>;
