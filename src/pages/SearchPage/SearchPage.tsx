@@ -6,6 +6,7 @@ import MovieList from '../../components/MovieList/MovieList';
 import { useSearchMovieByNameQuery } from '../../store/movieByName/movieByName';
 import { useAuthCheck } from '../../hooks/useAuthCheck';
 import { IPaginationParams } from '../../models/IPaginationParams';
+import Loading from '../../components/Loading/Loading';
 
 function SearchPage() {
 
@@ -39,7 +40,7 @@ function SearchPage() {
                   />
                </div>
             </form>
-            {isLoading && <div>Loading...</div>}
+            {isLoading && <Loading />}
             {isError && <div>Error...</div>}
             {data && <MovieList
                movies={data.docs}

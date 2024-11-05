@@ -1,4 +1,3 @@
-
 export interface IMovieList {
    movies: any;
    currentPage: number;

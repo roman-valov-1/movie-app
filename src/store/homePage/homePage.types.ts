@@ -1,7 +1,6 @@
 export interface IHomePageState {
    movies: any;
    collectionsNames: string[];
-   currentCollection: string;
    currentQuery: string;
    page: number;
    limit: number;

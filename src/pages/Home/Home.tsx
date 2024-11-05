@@ -10,6 +10,7 @@ import { fetchMoviesByFilters } from "../../store/homePage/fetchMovieByFilters";
 import { fetchMoviesByCollection } from "../../store/homePage/fetchMoviesByCollection";
 import { homePageActions } from "../../store/homePage/homePageSlice";
 import { IPaginationParams } from "../../models/IPaginationParams";
+import Loading from "../../components/Loading/Loading";
 
 
 function Home() {
@@ -110,7 +111,7 @@ function Home() {
             </aside>
             <section className={styles["home__content"]}>
                <h2>Results</h2>
-               {isLoading && <div>Loading...</div>}
+               {isLoading && <Loading />}
                {error && <div>{error}</div>}
                {movies && <MovieList
                   movies={movies}
@@ -118,7 +119,7 @@ function Home() {
                   maxPage={pages}
                   quantity={homePageLimit}
                   changePaginationParams={setPaginationParams}
-               />
+               ></MovieList>
                }
             </section>
          </div>

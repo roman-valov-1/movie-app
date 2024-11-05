@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import SelectBlock from '../SelectBlock/SelectBlock';
 import styles from './FiltersBlock.module.css';
 import { IFiltersBlockProps } from './FiltersBlock.props';
@@ -21,7 +21,6 @@ function FiltersBlock({ setSearchParams, onSubmit }: IFiltersBlockProps) {
    } = useAppSelector(state => state.filtersParams);
 
    const formChangeHandler = (e: ChangeEvent) => {
-
       e.currentTarget.querySelectorAll('input').forEach(function (input) {
 
          if (input.type === 'radio' && input.name === 'genres' && input.checked === true) {
@@ -35,7 +34,6 @@ function FiltersBlock({ setSearchParams, onSubmit }: IFiltersBlockProps) {
          if (input.type === 'radio' && input.name === 'year' && input.checked === true) {
             setSearchParams(prevState => ({ ...prevState, year: input.value }));
          }
-
       });
    }
 
