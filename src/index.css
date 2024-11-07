@@ -1,5 +1,68 @@
+:root {
+  --background-primary-color: #181818;
+  --background-secondary-color: #2A2A2A;
+  --text-color: #fff;
+  --text-secondary-color: #E0E0E0;
+  --primary-color: #24B47E;
+  --secondary-color: #32dd9e;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  color: var(--text-color);
 }
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--background-primary-color);
+}
+
+.container {
+  height: 100%;
+  padding: 30px 15px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.h1 {
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 20px 10px;
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+    max-width: 970px;
+  }
+}
+
+@media (max-width: 1399px) {
+  .container {
+    max-width: 1180px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1398px;
+  }
+}
+
+
+
+
+

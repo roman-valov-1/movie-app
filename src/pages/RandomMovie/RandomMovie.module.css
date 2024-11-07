@@ -1,0 +1,34 @@
+.random {
+   display: flex;
+   flex-direction: row;
+   gap: 30px;
+}
+
+.random__aside {
+   flex: 1 0 300px;
+   background-color: var(--background-secondary-color);
+   padding: 20px;
+   border-radius: 20px;
+}
+
+
+.random__content {
+   flex: 1 1 100%;
+   background-color: var(--background-secondary-color);
+   padding: 20px;
+   border-radius: 20px;
+   
+}
+
+.random__content-result {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+@media (width <= 991.98px) {
+   .random {
+      flex-direction: column;
+      gap: 20px;
+   }
+}

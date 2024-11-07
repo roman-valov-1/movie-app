@@ -1,0 +1,39 @@
+.filters {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+}
+
+.filters__form {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+}
+
+.filters__form-item {
+}
+
+.filters__form-item span {
+   display: inline-block;
+   font-weight: 600;
+   margin-bottom: 5px;
+}
+
+@media (width <=991.98px) {
+   .filters__form {
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+   }
+   .filters__form-item {
+      flex: 0 1 320px;
+   }
+}
+
+@media (width <=767.98px) {
+   .filters__form-item {
+      flex: 0 1 100%;
+   }
+}

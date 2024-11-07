@@ -1,0 +1,15 @@
+.similar-movies__container {
+   overflow: hidden;
+}
+
+.similar-movies__list {
+   display: flex;
+   flex-direction: row;
+   column-gap: 20px;
+   transition: all 0.3s ease;
+}
+
+.similar-movies__buttons {
+   display: flex;
+   justify-content: space-between;
+}

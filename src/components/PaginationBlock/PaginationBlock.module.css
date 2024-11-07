@@ -1,0 +1,26 @@
+.pagination {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+}
+
+.pagination__main {
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+}
+
+.pagination__buttons {
+   display: flex;
+   align-self: center;
+   gap: 15px;
+}
+
+@media (width <= 575.98px) {
+   .pagination__buttons {
+      gap: 12px;
+   }
+}
